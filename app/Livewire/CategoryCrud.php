@@ -25,6 +25,11 @@ class CategoryCrud extends Component
         'activo' => 'boolean',
     ];
 
+    // Definir los cast para asegurar que los valores se manejen correctamente
+    protected $casts = [
+        'activo' => 'boolean',
+    ];
+
     public function render()
     {
         $categories = Category::orderBy('nombre')->get();
@@ -53,12 +58,12 @@ class CategoryCrud extends Component
     public function store()
     {
         $this->validate();
-
+        #dd($this->activo);;
         Category::updateOrCreate(['id' => $this->category_id], [
             'nombre' => $this->nombre,
             'tipo' => $this->tipo,
             'descripcion' => $this->descripcion,
-            'activo' => $this->activo
+            'activo' => $this->activo? true : false,
         ]);
 
         session()->flash('message', $this->category_id ? 'Categoría actualizada correctamente.' : 'Categoría creada correctamente.');
@@ -74,7 +79,8 @@ class CategoryCrud extends Component
         $this->nombre = $category->nombre;
         $this->tipo = $category->tipo;
         $this->descripcion = $category->descripcion;
-        $this->activo = $category->activo;
+        // Forzar conversión a booleano
+        $this->activo = (bool) $category->activo;
 
         $this->openModal();
     }

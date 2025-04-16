@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\CategoryCrud;
+use App\Livewire\ProductosCrud;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
@@ -24,7 +25,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('admin')->group(function () {
         Route::get('/categorias', CategoryCrud::class)->name('categorias.index');
+        /* productos */
+        Route::get('/productos',ProductosCrud::class)->name('productos.index');
     });
+
 });
 
 require __DIR__ . '/auth.php';

@@ -20,4 +20,13 @@ class Category extends Model
         'descripcion',
         'activo',
     ];
+
+    /**
+     * Los atributos que deben convertirse a tipos nativos.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'activo' => 'boolean',
+    ];
 }
