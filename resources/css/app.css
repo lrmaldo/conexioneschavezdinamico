@@ -361,3 +361,101 @@ select:disabled[data-flux-control] {
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
+
+/* Soporte para todas las utilidades necesarias en el CRUD de proveedores */
+@layer utilities {
+    /* Line clamp para truncar texto en múltiples líneas */
+    .line-clamp-1 {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+    }
+
+    .line-clamp-2 {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+    }
+
+    .line-clamp-3 {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+    }
+
+    /* Clases para animaciones */
+    .animate__animated {
+        animation-duration: 1s;
+        animation-fill-mode: both;
+    }
+
+    .animate__fadeIn {
+        animation-name: fadeIn;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Utilidades para max-width inline */
+    .max-w-xs {
+        max-width: 20rem;
+    }
+
+    .max-w-\[100px\] {
+        max-width: 100px;
+    }
+
+    /* Soporte para group-hover */
+    .group:hover .group-hover\:text-indigo-600 {
+        --tw-text-opacity: 1;
+        color: rgba(79, 70, 229, var(--tw-text-opacity));
+    }
+
+    /* Soporte para outline-hidden */
+    .outline-hidden {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+    }
+
+    /* Soporte para ring offset */
+    .ring-offset-2 {
+        --tw-ring-offset-width: 2px;
+    }
+
+    .ring-offset-accent-foreground {
+        --tw-ring-offset-color: var(--color-accent-foreground);
+    }
+}
+
+/* Estilos específicos para el modo de vista */
+.view-mode-toggle button {
+    @apply transition-colors duration-150;
+}
+
+/* Estilos para los botones de acción en las tarjetas */
+.card-actions button {
+    @apply transition-colors duration-150;
+}
+
+/* Soporte para z-index personalizado */
+.z-50 {
+    z-index: 50;
+}
+
+/* Ajustes para la previsualización de imágenes */
+.object-contain {
+    object-fit: contain;
+}
+
+.object-cover {
+    object-fit: cover;
+}

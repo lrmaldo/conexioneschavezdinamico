@@ -2,6 +2,7 @@
 
 use App\Livewire\CategoryCrud;
 use App\Livewire\ProductosCrud;
+use App\Livewire\ProviderCrud;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
@@ -27,6 +28,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/categorias', CategoryCrud::class)->name('categorias.index');
         /* productos */
         Route::get('/productos',ProductosCrud::class)->name('productos.index');
+        /* proveedores */
+        Route::get('/proveedores', ProviderCrud::class)->name('proveedores.index');
     });
 
 });
