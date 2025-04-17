@@ -37,6 +37,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/contacto', \App\Livewire\ContactForm::class)->name('contacto.index');
         /* horarios */
         Route::get('/horarios', \App\Livewire\ScheduleManager::class)->name('horarios.index');
+        /* galeria */
+        Route::get('/galeria', \App\Livewire\GalleryManager::class)->name('galeria.index');
     });
 
 });
