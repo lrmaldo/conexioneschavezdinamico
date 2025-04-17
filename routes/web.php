@@ -33,6 +33,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/proveedores', ProviderCrud::class)->name('proveedores.index');
         /* testimonios */
         Route::get('/testimonios', TestimonialCrud::class)->name('testimonios.index');
+        /* contacto */
+        Route::get('/contacto', \App\Livewire\ContactForm::class)->name('contacto.index');
     });
 
 });
