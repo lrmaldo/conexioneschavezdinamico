@@ -504,3 +504,46 @@ select:disabled[data-flux-control] {
         animation: slideInRight 0.3s ease-out forwards;
     }
 }
+
+/* Estilos personalizados para el administrador de horarios */
+@layer components {
+    /* Mejoras para la tabla de horarios */
+    .schedule-table {
+        @apply w-full overflow-x-auto;
+    }
+
+    /* Estilos para inputs de tiempo */
+    .time-input {
+        @apply transition-all duration-200;
+    }
+
+    .time-input:focus {
+        @apply transform scale-105;
+    }
+
+    .time-input.modified {
+        @apply border-l-4 border-yellow-400;
+    }
+
+    /* Animación para mensajes de éxito */
+    @keyframes fadeOutSuccess {
+        0% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+
+    .success-message {
+        animation: fadeOutSuccess 5s forwards;
+    }
+
+    /* Mejoras para vista móvil */
+    @media (max-width: 640px) {
+        .schedule-day-cell {
+            @apply font-bold text-blue-700;
+        }
+
+        .schedule-controls {
+            @apply flex flex-col space-y-2;
+        }
+    }
+}

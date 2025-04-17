@@ -35,6 +35,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/testimonios', TestimonialCrud::class)->name('testimonios.index');
         /* contacto */
         Route::get('/contacto', \App\Livewire\ContactForm::class)->name('contacto.index');
+        /* horarios */
+        Route::get('/horarios', \App\Livewire\ScheduleManager::class)->name('horarios.index');
     });
 
 });
