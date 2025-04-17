@@ -23,69 +23,69 @@
                 <div class="fixed inset-0 flex items-center justify-center z-50">
                     <div class="absolute inset-0 bg-gray-900 opacity-75"></div>
 
-                    <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full z-10">
-                        <div class="px-6 py-4">
+                    <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full z-10 max-h-[90vh] flex flex-col">
+                        <div class="px-6 py-4 border-b">
                             <div class="text-lg font-medium text-gray-900">
                                 {{ $isEdit ? 'Editar imagen' : 'Agregar nueva imagen' }}
                             </div>
+                        </div>
 
-                            <div class="mt-4">
-                                <form wire:submit.prevent="store">
-                                    <div class="mb-4">
-                                        <label for="titulo" class="block text-gray-700 text-sm font-bold mb-2">Título:</label>
-                                        <input type="text" wire:model="titulo" id="titulo" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                                        @error('titulo') <span class="text-red-500 text-xs italic">{{ $message }}</span> @enderror
-                                    </div>
+                        <div class="px-6 py-4 overflow-y-auto flex-1">
+                            <form wire:submit.prevent="store">
+                                <div class="mb-4">
+                                    <label for="titulo" class="block text-gray-700 text-sm font-bold mb-2">Título:</label>
+                                    <input type="text" wire:model="titulo" id="titulo" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                    @error('titulo') <span class="text-red-500 text-xs italic">{{ $message }}</span> @enderror
+                                </div>
 
-                                    <div class="mb-4">
-                                        <label for="descripcion" class="block text-gray-700 text-sm font-bold mb-2">Descripción:</label>
-                                        <textarea wire:model="descripcion" id="descripcion" rows="3" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
-                                        @error('descripcion') <span class="text-red-500 text-xs italic">{{ $message }}</span> @enderror
-                                    </div>
+                                <div class="mb-4">
+                                    <label for="descripcion" class="block text-gray-700 text-sm font-bold mb-2">Descripción:</label>
+                                    <textarea wire:model="descripcion" id="descripcion" rows="3" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+                                    @error('descripcion') <span class="text-red-500 text-xs italic">{{ $message }}</span> @enderror
+                                </div>
 
-                                    <div class="mb-4">
-                                        <label for="categoria" class="block text-gray-700 text-sm font-bold mb-2">Categoría:</label>
-                                        <select wire:model="categoria" id="categoria" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                                            <option value="">Seleccione una categoría</option>
-                                            <option value="empresa">Empresa</option>
-                                            <option value="servicios">Servicios</option>
-                                            <option value="local">Local</option>
-                                            <option value="evento">Evento</option>
-                                        </select>
-                                        @error('categoria') <span class="text-red-500 text-xs italic">{{ $message }}</span> @enderror
-                                    </div>
+                                <div class="mb-4">
+                                    <label for="categoria" class="block text-gray-700 text-sm font-bold mb-2">Categoría:</label>
+                                    <select wire:model="categoria" id="categoria" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                        <option value="">Seleccione una categoría</option>
+                                        <option value="empresa">Empresa</option>
+                                        <option value="servicios">Servicios</option>
+                                        <option value="local">Local</option>
+                                        <option value="evento">Evento</option>
+                                    </select>
+                                    @error('categoria') <span class="text-red-500 text-xs italic">{{ $message }}</span> @enderror
+                                </div>
 
-                                    <div class="mb-4">
-                                        <label for="imagen" class="block text-gray-700 text-sm font-bold mb-2">Imagen:</label>
-                                        <input type="file" wire:model="imagen" id="imagen" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                                        <div wire:loading wire:target="imagen" class="mt-2 text-sm text-blue-500">Cargando imagen...</div>
-                                        @error('imagen') <span class="text-red-500 text-xs italic">{{ $message }}</span> @enderror
+                                <div class="mb-4">
+                                    <label for="imagen" class="block text-gray-700 text-sm font-bold mb-2">Imagen:</label>
+                                    <input type="file" wire:model="imagen" id="imagen" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                    <div wire:loading wire:target="imagen" class="mt-2 text-sm text-blue-500">Cargando imagen...</div>
+                                    @error('imagen') <span class="text-red-500 text-xs italic">{{ $message }}</span> @enderror
 
-                                        @if ($url && $isEdit && !$imagen)
-                                            <div class="mt-2">
-                                                <p class="text-sm text-gray-500 mb-1">Imagen actual:</p>
-                                                <img src="{{ $url }}" alt="Imagen actual" class="h-32 object-cover rounded">
-                                            </div>
-                                        @endif
+                                    @if ($url && $isEdit && !$imagen)
+                                        <div class="mt-2">
+                                            <p class="text-sm text-gray-500 mb-1">Imagen actual:</p>
+                                            <img src="{{ $url }}" alt="Imagen actual" class="h-32 object-cover rounded">
+                                        </div>
+                                    @endif
 
-                                        @if ($imagen)
-                                            <div class="mt-2">
-                                                <p class="text-sm text-gray-500 mb-1">Vista previa:</p>
-                                                <img src="{{ $imagen->temporaryUrl() }}" alt="Vista previa" class="h-32 object-cover rounded">
-                                            </div>
-                                        @endif
-                                    </div>
+                                    @if ($imagen)
+                                        <div class="mt-2">
+                                            <p class="text-sm text-gray-500 mb-1">Vista previa:</p>
+                                            <img src="{{ $imagen->temporaryUrl() }}" alt="Vista previa" class="h-32 object-cover rounded">
+                                        </div>
+                                    @endif
+                                </div>
+                            </form>
+                        </div>
 
-                                    <div class="flex justify-end mt-6">
-                                        <button type="button" wire:click="closeModal()" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2">
-                                            Cancelar
-                                        </button>
-                                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                            {{ $isEdit ? 'Actualizar' : 'Guardar' }}
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
+                        <div class="px-6 py-4 bg-gray-50 border-t flex justify-end">
+                            <button type="button" wire:click="closeModal()" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2">
+                                Cancelar
+                            </button>
+                            <button type="button" wire:click="store()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                {{ $isEdit ? 'Actualizar' : 'Guardar' }}
+                            </button>
                         </div>
                     </div>
                 </div>
