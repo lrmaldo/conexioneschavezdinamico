@@ -18,10 +18,27 @@ class GalleryManager extends Component
     public $isOpen = false;
     public $isEdit = false;
 
+    // Nueva propiedad para filtrar por categoría
+    public $categoriaFiltro = '';
+
     public function render()
     {
-        $images = GalleryImage::latest()->paginate(12);
+        // Filtrar imágenes según la categoría seleccionada
+        $imagesQuery = GalleryImage::latest();
+
+        if ($this->categoriaFiltro) {
+            $imagesQuery->where('categoria', $this->categoriaFiltro);
+        }
+
+        $images = $imagesQuery->paginate(12);
         return view('livewire.gallery-manager', compact('images'));
+    }
+
+    // Nuevo método para cambiar el filtro de categoría
+    public function filtrarPorCategoria($categoria = '')
+    {
+        $this->categoriaFiltro = $categoria;
+        $this->resetPage(); // Reiniciar paginación al cambiar filtros
     }
 
     public function openModal()

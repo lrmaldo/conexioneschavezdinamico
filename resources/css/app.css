@@ -547,3 +547,204 @@ select:disabled[data-flux-control] {
         }
     }
 }
+
+/* Estilos personalizados para el módulo de galería */
+@layer components {
+    /* Tarjeta de galería con efectos de hover y transición */
+    .gallery-card {
+        @apply bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 transition-all duration-300;
+
+        &:hover {
+            @apply shadow-xl transform scale-[1.02];
+        }
+    }
+
+    /* Contenedor de imagen con efecto zoom al hover */
+    .gallery-image-container {
+        @apply relative overflow-hidden h-48;
+
+        & img {
+            @apply w-full h-full object-cover transition-transform duration-500 ease-in-out;
+        }
+
+        .group:hover & img {
+            @apply transform scale-105;
+        }
+    }
+
+    /* Overlay para botones de acción */
+    .gallery-overlay {
+        @apply absolute inset-0 bg-gradient-to-t from-black/60 to-transparent
+               opacity-0 transition-opacity duration-300 flex items-end;
+
+        .group:hover & {
+            @apply opacity-100;
+        }
+    }
+
+    /* Botones de acción en las tarjetas */
+    .gallery-action-btn {
+        @apply bg-white/80 p-1.5 rounded-full text-gray-800 transition-colors duration-200;
+
+        &:hover {
+            @apply bg-white;
+        }
+
+        &.delete-btn:hover {
+            @apply bg-red-500 text-white;
+        }
+    }
+
+    /* Etiquetas de categoría */
+    .category-badge {
+        @apply px-2 py-1 text-xs rounded-full font-medium text-white;
+
+        &.empresa {
+            @apply bg-blue-500;
+        }
+
+        &.servicios {
+            @apply bg-green-500;
+        }
+
+        &.local {
+            @apply bg-purple-500;
+        }
+
+        &.evento {
+            @apply bg-yellow-500;
+        }
+    }
+
+    /* Botones de filtro */
+    .filter-btn {
+        @apply px-3 py-1 text-sm rounded-full transition-colors duration-200;
+
+        &.active {
+            @apply bg-blue-100 text-blue-800;
+        }
+
+        &.inactive {
+            @apply bg-gray-100 text-gray-800;
+
+            &:hover {
+                /* Cambiar esta línea que usa la sintaxis antigua */
+                @apply bg-gray-100/75;
+            }
+        }
+
+        &.empresa:hover {
+            @apply bg-blue-100 text-blue-800;
+        }
+
+        &.servicios:hover {
+            @apply bg-green-100 text-green-800;
+        }
+
+        &.local:hover {
+            @apply bg-purple-100 text-purple-800;
+        }
+
+        &.evento:hover {
+            @apply bg-yellow-100 text-yellow-800;
+        }
+    }
+
+    /* Botón principal de agregar imagen */
+    .add-image-btn {
+        @apply relative overflow-hidden bg-blue-600 hover:bg-blue-700 text-white
+               font-medium py-3 px-6 rounded-lg shadow-md transition-all duration-300
+               hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500/50;
+
+        /* Efecto de brillo animado */
+        &::after {
+            content: '';
+            @apply absolute top-0 right-0 w-12 h-full bg-white opacity-10
+                   transform -skew-x-12 transition-transform ease-out duration-700;
+        }
+
+        &:hover::after {
+            @apply translate-x-20;
+        }
+    }
+
+    /* Estado vacío de la galería */
+    .gallery-empty-state {
+        @apply col-span-full py-12 flex flex-col items-center justify-center
+               bg-gray-50 rounded-xl border-2 border-dashed border-gray-300;
+    }
+
+    /* Modal de galería */
+    .gallery-modal {
+        @apply bg-white rounded-lg overflow-hidden shadow-2xl transform
+               transition-all sm:max-w-lg sm:w-full z-10 max-h-[90vh] flex flex-col;
+    }
+
+    /* Animación de entrada para modal */
+    .modal-animation {
+        animation: scaleInCenter 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    }
+
+    /* Área para arrastrar archivos */
+    .dropzone {
+        @apply border-2 border-dashed border-gray-300 rounded-lg p-6 text-center
+               hover:border-blue-500 transition-colors duration-200;
+
+        &.has-file {
+            @apply border-blue-500 bg-blue-50;
+        }
+    }
+
+    /* Vista previa de imágenes */
+    .image-preview {
+        @apply mt-4 p-4 rounded-lg border;
+
+        &.current {
+            @apply bg-gray-50 border-gray-200;
+        }
+
+        &.new {
+            @apply bg-blue-50 border-blue-200;
+        }
+    }
+}
+
+/* Animaciones adicionales para la galería */
+@keyframes scaleInCenter {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes pulseLight {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Utilidades específicas para la galería */
+@layer utilities {
+    .pulse-on-hover:hover {
+        animation: pulseLight 1.5s ease-in-out infinite;
+    }
+
+    .text-shadow-sm {
+        text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .text-shadow-md {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .backdrop-blur-sm {
+        backdrop-filter: blur(4px);
+    }
+}
