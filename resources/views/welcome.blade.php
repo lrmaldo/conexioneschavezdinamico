@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  @livewireStyles
   <style>
     body {
       font-family: 'Montserrat', sans-serif;
@@ -20,7 +21,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
     .bg-image {
-      background-image: url('https://scontent-dfw5-2.xx.fbcdn.net/v/t39.30808-6/482302451_962615122728824_4557501094215340720_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=104&ccb=1-7&_nc_sid=86c6b0&_nc_eui2=AeH5aIf9cH0wRt7VQoW27-VCAAp8M2cM2BYACnwzZwzYFk0jX9-xlmT_pfwrPFxvkp44fuwGkbmL4V8VVhnsGUuu&_nc_ohc=tQq7r_i_sz0Q7kNvgE-bd1C&_nc_oc=AdlvarZ4DgG0tQKthIIyeHoy_VuZa7YBwC68erAWyl6VVYCp0ucw9J9wMVSUkxYSqyw&_nc_zt=23&_nc_ht=scontent-dfw5-2.xx&_nc_gid=uEIVSfDExwcWI0VoOeC2rA&oh=00_AYEKtr3Q6nrXFLq_jfzpF3xgcGqJXZ8lsKLvUhcVaoekHg&oe=67F4698C');
+      background-image: url('/img/portada.jpg');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -109,6 +110,32 @@
         transform: translateY(-10px) translateX(-50%);
       }
     }
+    .animate-pulse-slow {
+      animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    .animate-blob {
+      animation: blob 7s infinite;
+    }
+    .animation-delay-2000 {
+      animation-delay: 2s;
+    }
+    .animation-delay-4000 {
+      animation-delay: 4s;
+    }
+    @keyframes blob {
+      0% {
+        transform: translate(0px, 0px) scale(1);
+      }
+      33% {
+        transform: translate(30px, -50px) scale(1.1);
+      }
+      66% {
+        transform: translate(-20px, 20px) scale(0.9);
+      }
+      100% {
+        transform: translate(0px, 0px) scale(1);
+      }
+    }
   </style>
 </head>
 <body class="bg-image antialiased">
@@ -119,7 +146,8 @@
         <div class="flex items-center space-x-4">
           <!-- Logo placeholder -->
           <div class="logo-container">
-            <span>CC</span>
+            <img src="/img/marca de agua/color png2.png" alt="Conexiones Chávez Logo" class="w-10 h-10 object-contain">
+
           </div>
           <span class="font-bold text-xl md:text-2xl">Conexiones Chávez</span>
         </div>
@@ -138,17 +166,39 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="inicio" class="pt-28 pb-20 px-4 min-h-screen flex items-center relative">
-      <div class="container mx-auto text-center">
-        <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight" data-aos="fade-down" data-aos-duration="1000">Conexiones, Bandas y<br>Mangueras Chávez</h1>
-        <p class="text-xl md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">Soluciones industriales confiables para sus necesidades de conexión y transporte de fluidos</p>
-        <div class="flex flex-col md:flex-row justify-center gap-4" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="400">
-          <a href="#productos" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-lg shadow-lg transition-all transform hover:scale-105">
-            Nuestros Productos
-          </a>
-          <a href="#contacto" class="bg-transparent border-2 border-yellow-500 text-yellow-400 hover:bg-yellow-500/10 font-bold py-3 px-8 rounded-lg shadow-lg transition-all">
-            Contactar Ahora
-          </a>
+    <section id="inicio" class="relative pt-28 pb-20 px-4 min-h-screen flex items-center">
+      <div class="absolute inset-0 bg-black/70 z-0"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-transparent z-0"></div>
+
+      <div class="container mx-auto relative z-10">
+        <div class="flex flex-col items-center justify-center mb-10" data-aos="fade-down" data-aos-duration="1200">
+          <img src="/img/marca de agua/color png2.png" alt="Conexiones Chávez Logo" class="w-64 md:w-80 mb-8 drop-shadow-2xl animate-pulse-slow">
+        </div>
+
+        <div class="text-center">
+          <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight leading-tight" data-aos="zoom-in" data-aos-duration="1000">
+            <span class="block">Conexiones, Bandas y</span>
+            <span class="text-yellow-400">Mangueras Chávez</span>
+          </h1>
+
+          <p class="text-xl md:text-2xl text-gray-200 mb-12 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+            Soluciones industriales <span class="text-yellow-400 font-semibold">confiables y duraderas</span> para sus necesidades de conexión y transporte de fluidos
+          </p>
+
+          <div class="flex flex-col sm:flex-row justify-center gap-4 md:gap-6" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="600">
+            <a href="#productos" class="group bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-4 px-8 rounded-lg shadow-lg transition-all transform hover:scale-105 flex items-center justify-center">
+              <span>Nuestros Productos</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </a>
+            <a href="#contacto" class="group bg-transparent border-2 border-yellow-500 text-yellow-400 hover:bg-yellow-500/10 font-bold py-4 px-8 rounded-lg shadow-lg transition-all flex items-center justify-center">
+              <span>Contactar Ahora</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
 
@@ -158,6 +208,11 @@
           <i class="fas fa-chevron-down text-3xl"></i>
         </a>
       </div>
+
+      <!-- Elemento decorativo - Partículas -->
+      <div class="absolute top-1/4 left-10 w-20 h-20 bg-yellow-500/10 rounded-full blur-xl animate-blob"></div>
+      <div class="absolute bottom-1/4 right-10 w-32 h-32 bg-yellow-400/10 rounded-full blur-xl animate-blob animation-delay-2000"></div>
+      <div class="absolute top-1/2 left-1/3 w-24 h-24 bg-yellow-300/10 rounded-full blur-xl animate-blob animation-delay-4000"></div>
     </section>
 
     <div class="section-divider"></div>
@@ -170,26 +225,26 @@
             <div class="md:w-1/2 bg-black text-white p-10 industrial-card">
               <h2 class="text-3xl font-bold mb-6 slide-in-left text-yellow-400">Quiénes Somos</h2>
               <p class="text-lg mb-4 leading-relaxed slide-in-left" style="animation-delay: 0.2s">
-                Con más de 15 años de experiencia en el sector industrial y automotriz, en <strong class="text-yellow-400">Conexiones Chávez</strong> nos hemos consolidado como líderes en la venta y reparación de sistemas hidráulicos y neumáticos en Tuxtepec.
+                Con más de {{ $companyStats['experience'] }} años de experiencia en el sector industrial y automotriz, en <strong class="text-yellow-400">Conexiones Chávez</strong> nos hemos consolidado como líderes en la venta y reparación de sistemas hidráulicos y neumáticos en Tuxtepec.
               </p>
               <p class="text-lg mb-4 leading-relaxed slide-in-left" style="animation-delay: 0.4s">
                 Nuestro equipo de especialistas técnicos cuenta con la capacitación necesaria para ofrecer soluciones precisas que se adaptan a las necesidades específicas de cada cliente.
               </p>
               <div class="mt-8 grid grid-cols-2 gap-4 slide-in-left" style="animation-delay: 0.6s">
                 <div class="text-center">
-                  <p class="text-3xl font-bold text-yellow-400">15+</p>
+                  <p class="text-3xl font-bold text-yellow-400">{{ $companyStats['experience'] }}+</p>
                   <p class="text-sm">Años de experiencia</p>
                 </div>
                 <div class="text-center">
-                  <p class="text-3xl font-bold text-yellow-400">1000+</p>
+                  <p class="text-3xl font-bold text-yellow-400">{{ $companyStats['clients'] }}+</p>
                   <p class="text-sm">Clientes satisfechos</p>
                 </div>
                 <div class="text-center">
-                  <p class="text-3xl font-bold text-yellow-400">5000+</p>
+                  <p class="text-3xl font-bold text-yellow-400">{{ $companyStats['projects'] }}+</p>
                   <p class="text-sm">Proyectos completados</p>
                 </div>
                 <div class="text-center">
-                  <p class="text-3xl font-bold text-yellow-400">24h</p>
+                  <p class="text-3xl font-bold text-yellow-400">{{ $companyStats['service'] }}</p>
                   <p class="text-sm">Servicio de emergencia</p>
                 </div>
               </div>
@@ -199,12 +254,10 @@
               <p class="text-gray-700 mb-6 slide-in-right" style="animation-delay: 0.2s">
                 Proveer soluciones eficientes en sistemas de conexión y transporte de fluidos, garantizando la más alta calidad y servicio personalizado para mantener operativas las industrias de nuestra región.
               </p>
-
               <h3 class="text-2xl font-bold text-black mb-4 slide-in-right" style="animation-delay: 0.4s">Nuestra Visión</h3>
               <p class="text-gray-700 mb-6 slide-in-right" style="animation-delay: 0.6s">
                 Ser reconocidos como el proveedor líder de soluciones hidráulicas y neumáticas en la región, destacando por nuestra excelencia técnica, innovación y compromiso con la satisfacción del cliente.
               </p>
-
               <h3 class="text-2xl font-bold text-black mb-4 slide-in-right" style="animation-delay: 0.8s">Valores</h3>
               <ul class="list-disc list-inside text-gray-700 slide-in-right" style="animation-delay: 1s">
                 <li>Integridad en cada servicio que ofrecemos</li>
@@ -227,84 +280,35 @@
           <h2 class="text-4xl font-bold text-white mb-4">Nuestros Productos</h2>
           <p class="text-xl text-gray-300 max-w-3xl mx-auto">Ofrecemos una amplia gama de soluciones de alta calidad para satisfacer las necesidades más exigentes de la industria</p>
         </div>
-
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div class="bg-white/95 rounded-lg overflow-hidden shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl border-t-4 border-yellow-500" data-aos="flip-left" data-aos-duration="1000">
+          @foreach($featuredProducts as $product)
+          <div class="bg-white/95 rounded-lg overflow-hidden shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl border-t-4 border-yellow-500" data-aos="flip-left" data-aos-duration="1000" data-aos-delay="{{ $loop->index * 200 }}">
             <div class="h-48 bg-black relative overflow-hidden">
               <div class="absolute inset-0 flex items-center justify-center">
-                <i class="fas fa-cog text-8xl text-yellow-500/30"></i>
+                @if($product->imagen)
+                    <img src="{{ asset('storage/' . $product->imagen) }}" alt="{{ $product->nombre }}" class="h-40 w-full object-cover">
+                @else
+                    <i class="fas fa-cog text-8xl text-yellow-500/30"></i>
+                @endif
               </div>
               <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black p-4">
-                <h3 class="text-xl font-bold text-yellow-400">Conexiones Hidráulicas</h3>
+                <h3 class="text-xl font-bold text-yellow-400">{{ $product->nombre }}</h3>
               </div>
             </div>
             <div class="p-6">
-              <p class="text-gray-700 mb-4">Adaptadores, acoples rápidos y conexiones de alta presión diseñados para garantizar un sellado perfecto y prevenir fugas en sistemas hidráulicos.</p>
+              <p class="text-gray-700 mb-4">{{ $product->descripcion }}</p>
               <div class="flex justify-between items-center">
-                <span class="text-sm text-black font-semibold">Variedad de tamaños</span>
-                <button class="text-yellow-600 hover:text-yellow-800 font-medium">Ver más</button>
+                <span class="text-sm text-black font-semibold">{{ $product->highlight ?? 'Alta calidad' }}</span>
+                <a href="{{ route('products.show', $product) }}" class="text-yellow-600 hover:text-yellow-800 font-medium">Ver más</a>
               </div>
             </div>
           </div>
-
-          <div class="bg-white/95 rounded-lg overflow-hidden shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl border-t-4 border-yellow-500" data-aos="flip-left" data-aos-duration="1000" data-aos-delay="200">
-            <div class="h-48 bg-black relative overflow-hidden">
-              <div class="absolute inset-0 flex items-center justify-center">
-                <i class="fas fa-sync-alt text-8xl text-yellow-500/30"></i>
-              </div>
-              <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black p-4">
-                <h3 class="text-xl font-bold text-yellow-400">Bandas Industriales</h3>
-              </div>
-            </div>
-            <div class="p-6">
-              <p class="text-gray-700 mb-4">Bandas de transmisión de potencia para aplicaciones industriales, fabricadas con materiales de primera calidad para garantizar durabilidad y rendimiento.</p>
-              <div class="flex justify-between items-center">
-                <span class="text-sm text-black font-semibold">Alta resistencia</span>
-                <button class="text-yellow-600 hover:text-yellow-800 font-medium">Ver más</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-white/95 rounded-lg overflow-hidden shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl border-t-4 border-yellow-500" data-aos="flip-left" data-aos-duration="1000" data-aos-delay="400">
-            <div class="h-48 bg-black relative overflow-hidden">
-              <div class="absolute inset-0 flex items-center justify-center">
-                <i class="fas fa-water text-8xl text-yellow-500/30"></i>
-              </div>
-              <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black p-4">
-                <h3 class="text-xl font-bold text-yellow-400">Mangueras Especializadas</h3>
-              </div>
-            </div>
-            <div class="p-6">
-              <p class="text-gray-700 mb-4">Mangueras de alta y baja presión diseñadas para transportar fluidos en condiciones extremas, resistentes a la abrasión, temperatura y productos químicos.</p>
-              <div class="flex justify-between items-center">
-                <span class="text-sm text-black font-semibold">Múltiples aplicaciones</span>
-                <button class="text-yellow-600 hover:text-yellow-800 font-medium">Ver más</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-white/95 rounded-lg overflow-hidden shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl border-t-4 border-yellow-500" data-aos="flip-left" data-aos-duration="1000" data-aos-delay="600">
-            <div class="h-48 bg-black relative overflow-hidden">
-              <div class="absolute inset-0 flex items-center justify-center">
-                <i class="fas fa-plug text-8xl text-yellow-500/30"></i>
-              </div>
-              <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black p-4">
-                <h3 class="text-xl font-bold text-yellow-400">Válvulas y Adaptadores</h3>
-              </div>
-            </div>
-            <div class="p-6">
-              <p class="text-gray-700 mb-4">Componentes de control de flujo y adaptadores para crear sistemas completos y personalizados que se ajusten perfectamente a sus necesidades operativas.</p>
-              <div class="flex justify-between items-center">
-                <span class="text-sm text-black font-semibold">Control preciso</span>
-                <button class="text-yellow-600 hover:text-yellow-800 font-medium">Ver más</button>
-              </div>
-            </div>
-          </div>
+          @endforeach
         </div>
 
         <div class="mt-12 text-center" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800">
-          <a href="#contacto" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-lg shadow-lg transition-all transform hover:scale-105">
-            Solicitar Cotización
+          <a href="{{ route('products.index') }}" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-lg shadow-lg transition-all transform hover:scale-105">
+            Ver Todos los Productos
           </a>
         </div>
       </div>
@@ -321,58 +325,42 @@
         </div>
 
         <div class="grid md:grid-cols-3 gap-8">
-          <div class="bg-gradient-to-br from-white/95 to-gray-100 p-8 rounded-lg shadow-lg relative border-l-4 border-yellow-500" data-aos="fade-right" data-aos-duration="1000">
+          @foreach($testimonials as $testimonial)
+          <div class="bg-gradient-to-br from-white/95 to-gray-100 p-8 rounded-lg shadow-lg relative border-l-4 border-yellow-500" data-aos="{{ $loop->first ? 'fade-right' : ($loop->last ? 'fade-left' : 'fade-up') }}" data-aos-duration="1000" data-aos-delay="{{ $loop->index * 200 }}">
             <div class="absolute -top-5 -left-5 bg-yellow-500 text-black p-3 rounded-full w-12 h-12 flex items-center justify-center text-3xl">
               "
             </div>
-            <p class="text-gray-700 mb-6 pt-4">En 2018 llegue a la ciudad de Tuxtepec con la empresa Prodicam al área de maquinaria de cosecha e inicie la búsqueda de proveedores de refacciones, aceites, mangueras y herramientas en ese tiempo no conocía Tuxtepec por lo que un operador de alzadora me recomendó ir con "Chávez"...</p>
+            <p class="text-gray-700 mb-6 pt-4">{{ Str::limit($testimonial->mensaje, 150) }}</p>
             <div class="flex items-center justify-between">
               <div class="flex items-center">
+                @if($testimonial->imagen)
                 <div class="w-12 h-12 rounded-full overflow-hidden">
-                  <img src="img/Prodicam.png" alt="Prodicam logo" class="w-full h-full object-cover">
+                  <img src="{{ asset('storage/' . $testimonial->imagen) }}" alt="{{ $testimonial->empresa }}" class="w-full h-full object-cover">
                 </div>
+                @else
+                <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
+                  <span class="text-yellow-800 font-bold">{{ substr($testimonial->cliente, 0, 2) }}</span>
+                </div>
+                @endif
                 <div class="ml-4">
-                  <h4 class="font-bold text-black">Pablo Casanova Barón</h4>
-                  <p class="text-gray-600">Prodicam - Industria Azucarera</p>
+                  <h4 class="font-bold text-black">{{ $testimonial->cliente }}</h4>
+                  <p class="text-gray-600">{{ $testimonial->empresa }}</p>
                 </div>
               </div>
-              <a href="prodicam.html" class="text-yellow-600 hover:text-yellow-800 font-medium flex items-center">
+
+              <a href="{{ route('testimonials.show', $testimonial) }}" class="text-yellow-600 hover:text-yellow-800 font-medium flex items-center">
                 Leer completo <i class="fas fa-arrow-right ml-2"></i>
               </a>
-            </div>
-          </div>
 
-          <div class="bg-gradient-to-br from-white/95 to-gray-100 p-8 rounded-lg shadow-lg relative border-l-4 border-yellow-500" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-            <div class="absolute -top-5 -left-5 bg-yellow-500 text-black p-3 rounded-full w-12 h-12 flex items-center justify-center text-3xl">
-              "
-            </div>
-            <p class="text-gray-700 mb-6 pt-4">Cuando tuvimos una emergencia en nuestra línea de producción, el equipo de Conexiones Chávez respondió en tiempo récord. Su conocimiento técnico y disponibilidad de piezas nos sacaron de un apuro importante.</p>
-            <div class="flex items-center">
-              <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
-                <span class="text-yellow-800 font-bold">LG</span>
-              </div>
-              <div class="ml-4">
-                <h4 class="font-bold text-black">Laura Gómez</h4>
-                <p class="text-gray-600">Transportes del Sureste</p>
-              </div>
             </div>
           </div>
+          @endforeach
+        </div>
 
-          <div class="bg-gradient-to-br from-white/95 to-gray-100 p-8 rounded-lg shadow-lg relative border-l-4 border-yellow-500" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="400">
-            <div class="absolute -top-5 -left-5 bg-yellow-500 text-black p-3 rounded-full w-12 h-12 flex items-center justify-center text-3xl">
-              "
-            </div>
-            <p class="text-gray-700 mb-6 pt-4">La asesoría técnica que nos brindan es inigualable. Nos han ayudado a seleccionar los componentes correctos para nuestros sistemas, lo que ha resultado en una mayor eficiencia y menos mantenimiento.</p>
-            <div class="flex items-center">
-              <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
-                <span class="text-yellow-800 font-bold">FC</span>
-              </div>
-              <div class="ml-4">
-                <h4 class="font-bold text-black">Fernando Castillo</h4>
-                <p class="text-gray-600">Construcciones Papaloapan</p>
-              </div>
-            </div>
-          </div>
+        <div class="mt-12 text-center" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800">
+          <a href="{{ route('testimonials.index') }}" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-lg shadow-lg transition-all transform hover:scale-105">
+            Ver Todos los Testimonios
+          </a>
         </div>
       </div>
     </section>
@@ -389,41 +377,29 @@
 
         <div class="bg-white/90 rounded-xl shadow-xl p-10 border-t-4 border-yellow-500" data-aos="fade-up" data-aos-duration="1000">
           <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            @foreach($providers as $provider)
             <div class="flex items-center justify-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition border-b-2 border-yellow-500">
               <div class="text-center">
-                <i class="fas fa-industry text-5xl text-yellow-600 mb-3"></i>
-                <h3 class="font-bold text-gray-800">Parker</h3>
-                <p class="text-sm text-gray-600">Conexiones de precisión</p>
+                @if($provider->logo)
+                    <img src="{{ asset('storage/' . $provider->logo) }}" alt="{{ $provider->nombre }}" class="h-16 mb-3 mx-auto">
+                @else
+                    <i class="fas fa-industry text-5xl text-yellow-600 mb-3"></i>
+                @endif
+                <h3 class="font-bold text-gray-800">{{ $provider->nombre }}</h3>
+                <p class="text-sm text-gray-600">{{ $provider->category->nombre?? 'Proveedor' }}</p>
               </div>
             </div>
-
-            <div class="flex items-center justify-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition border-b-2 border-yellow-500">
-              <div class="text-center">
-                <i class="fas fa-cogs text-5xl text-yellow-600 mb-3"></i>
-                <h3 class="font-bold text-gray-800">Gates</h3>
-                <p class="text-sm text-gray-600">Bandas y mangueras</p>
-              </div>
-            </div>
-
-            <div class="flex items-center justify-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition border-b-2 border-yellow-500">
-              <div class="text-center">
-                <i class="fas fa-tachometer-alt text-5xl text-yellow-600 mb-3"></i>
-                <h3 class="font-bold text-gray-800">Eaton</h3>
-                <p class="text-sm text-gray-600">Sistemas hidráulicos</p>
-              </div>
-            </div>
-
-            <div class="flex items-center justify-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition border-b-2 border-yellow-500">
-              <div class="text-center">
-                <i class="fas fa-tools text-5xl text-yellow-600 mb-3"></i>
-                <h3 class="font-bold text-gray-800">SKF</h3>
-                <p class="text-sm text-gray-600">Componentes de precisión</p>
-              </div>
-            </div>
+            @endforeach
           </div>
 
           <div class="mt-10 text-center">
             <p class="text-gray-700">Al trabajar con los mejores fabricantes del sector, podemos ofrecer garantía extendida en todos nuestros productos y servicios, asegurando que su inversión está protegida.</p>
+            {{-- ver mas proveedores --}}
+            <div class="mt-8 text-center">
+                <a href="{{ route('providers.index') }}" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-lg shadow-lg transition-all transform hover:scale-105">
+                    Ver Todos los Proveedores
+                </a>
+            </div>
           </div>
         </div>
       </div>
@@ -443,37 +419,11 @@
           <div class="flex flex-col md:flex-row">
             <div class="md:w-1/2 p-10">
               <h3 class="text-2xl font-bold text-black mb-6">Envíanos un mensaje</h3>
-
-              <form class="space-y-6">
-                <div>
-                  <label class="block text-gray-700 mb-2 font-medium" for="nombre">Nombre completo</label>
-                  <input type="text" id="nombre" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent" placeholder="Tu nombre">
-                </div>
-
-                <div>
-                  <label class="block text-gray-700 mb-2 font-medium" for="email">Correo electrónico</label>
-                  <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent" placeholder="tucorreo@ejemplo.com">
-                </div>
-
-                <div>
-                  <label class="block text-gray-700 mb-2 font-medium" for="telefono">Teléfono</label>
-                  <input type="tel" id="telefono" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent" placeholder="Tu número telefónico">
-                </div>
-
-                <div>
-                  <label class="block text-gray-700 mb-2 font-medium" for="mensaje">Mensaje</label>
-                  <textarea id="mensaje" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent" placeholder="¿En qué podemos ayudarte?"></textarea>
-                </div>
-
-                <button type="submit" class="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-4 rounded-lg transition-colors">
-                  Enviar mensaje
-                </button>
-              </form>
+              @livewire('contact-form')
             </div>
 
             <div class="md:w-1/2 bg-black text-white p-10 industrial-card">
               <h3 class="text-2xl font-bold mb-6 text-yellow-400">Información de contacto</h3>
-
               <div class="space-y-6">
                 <div class="flex items-start">
                   <div class="h-12 w-12 rounded-full bg-yellow-500/20 flex items-center justify-center mr-4 shrink-0">
@@ -481,7 +431,7 @@
                   </div>
                   <div>
                     <h4 class="font-bold text-lg mb-1 text-yellow-200">Dirección</h4>
-                    <p class="text-gray-300">Blvd. Plan de Tuxtepec, Local 6, Colonia 5 de Mayo, San Juan Bautista Tuxtepec, Oaxaca, C.P. 68370</p>
+                    <p class="text-gray-300">{{ $contact->direccion }}</p>
                   </div>
                 </div>
 
@@ -491,8 +441,12 @@
                   </div>
                   <div>
                     <h4 class="font-bold text-lg mb-1 text-yellow-200">Teléfonos</h4>
-                    <p class="text-gray-300"><a href="tel:+522871216143" class="hover:text-yellow-400 transition-colors">287 121 6143</a></p>
-                    <p class="text-gray-300"><a href="tel:+522871536141" class="hover:text-yellow-400 transition-colors">287 153 6141</a></p>
+                    @if($contact->telefono1)
+                    <p class="text-gray-300"><a href="tel:+52{{ preg_replace('/\D/', '', $contact->telefono1) }}" class="hover:text-yellow-400 transition-colors">{{ $contact->telefono1 }}</a></p>
+                    @endif
+                    @if($contact->telefono2)
+                    <p class="text-gray-300"><a href="tel:+52{{ preg_replace('/\D/', '', $contact->telefono2) }}" class="hover:text-yellow-400 transition-colors">{{ $contact->telefono2 }}</a></p>
+                    @endif
                   </div>
                 </div>
 
@@ -502,7 +456,7 @@
                   </div>
                   <div>
                     <h4 class="font-bold text-lg mb-1 text-yellow-200">Correo electrónico</h4>
-                    <p class="text-gray-300"><a href="mailto:manolo.chavez@hotmail.com" class="hover:text-yellow-400 transition-colors">manolo.chavez@hotmail.com</a></p>
+                    <p class="text-gray-300"><a href="mailto:{{ $contact->correo }}" class="hover:text-yellow-400 transition-colors">{{ $contact->correo }}</a></p>
                   </div>
                 </div>
 
@@ -512,8 +466,18 @@
                   </div>
                   <div>
                     <h4 class="font-bold text-lg mb-1 text-yellow-200">Horario de atención</h4>
-                    <p class="text-gray-300">Lunes a Viernes: 8:00 AM - 6:00 PM</p>
-                    <p class="text-gray-300">Sábados: 8:00 AM - 2:00 PM</p>
+                    <div class="space-y-1">
+                      @forelse(App\Models\Schedule::all() as $schedule)
+                        <p class="text-gray-300">
+                          <span class="font-medium text-yellow-100">{{ $schedule->dia }}:</span>
+                          {{ \Carbon\Carbon::parse($schedule->inicio)->format('h:i A') }} -
+                          {{ \Carbon\Carbon::parse($schedule->fin)->format('h:i A') }}
+                        </p>
+                      @empty
+                        <p class="text-gray-300">Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+                        <p class="text-gray-300">Sábados: 9:00 AM - 5:00 PM</p>
+                      @endforelse
+                    </div>
                   </div>
                 </div>
               </div>
@@ -521,15 +485,23 @@
               <div class="mt-10">
                 <h4 class="font-bold text-lg mb-3 text-yellow-200">Síguenos en redes sociales</h4>
                 <div class="flex space-x-4">
-                  <a href="#" class="h-10 w-10 rounded-full bg-yellow-500 flex items-center justify-center hover:bg-yellow-600 transition-colors text-black">
+                  @if($contact->facebook)
+                  <a href="{{ $contact->facebook }}" target="_blank" class="h-10 w-10 rounded-full bg-yellow-500 flex items-center justify-center hover:bg-yellow-600 transition-colors text-black">
                     <i class="fab fa-facebook-f"></i>
                   </a>
-                  <a href="#" class="h-10 w-10 rounded-full bg-yellow-500 flex items-center justify-center hover:bg-yellow-600 transition-colors text-black">
+                  @endif
+
+                  @if($contact->instagram)
+                  <a href="{{ $contact->instagram }}" target="_blank" class="h-10 w-10 rounded-full bg-yellow-500 flex items-center justify-center hover:bg-yellow-600 transition-colors text-black">
                     <i class="fab fa-instagram"></i>
                   </a>
-                  <a href="#" class="h-10 w-10 rounded-full bg-yellow-500 flex items-center justify-center hover:bg-yellow-600 transition-colors text-black">
+                  @endif
+
+                  @if($contact->whatsapp)
+                  <a href="https://wa.me/{{ preg_replace('/\D/', '', $contact->whatsapp) }}" target="_blank" class="h-10 w-10 rounded-full bg-yellow-500 flex items-center justify-center hover:bg-yellow-600 transition-colors text-black">
                     <i class="fab fa-whatsapp"></i>
                   </a>
+                  @endif
                 </div>
               </div>
             </div>
@@ -537,6 +509,8 @@
         </div>
       </div>
     </section>
+
+    <div class="section-divider"></div>
 
     <!-- Pie de página -->
     <footer class="bg-black border-t border-yellow-500 text-white py-10">
@@ -548,11 +522,11 @@
             </div>
             <div>
               <h2 class="text-2xl font-bold mb-2">Conexiones, Bandas y Mangueras Chávez</h2>
-              <p class="text-yellow-200">Soluciones de calidad para la industria desde 2008</p>
+              <p class="text-yellow-200">Soluciones de calidad para la industria desde {{ now()->year - $companyStats['experience'] }}</p>
             </div>
           </div>
           <div class="text-center md:text-right">
-            <p class="text-gray-400">&copy; 2025 Conexiones Chávez. Todos los derechos reservados.</p>
+            <p class="text-gray-400">&copy; {{ date('Y') }} Conexiones Chávez. Todos los derechos reservados.</p>
             <p class="text-sm text-gray-500 mt-1">Diseñado para brindar soluciones industriales de <span class="text-yellow-400">alta calidad</span></p>
           </div>
         </div>
@@ -589,5 +563,6 @@
       });
     });
   </script>
+  @livewireScripts
 </body>
 </html>

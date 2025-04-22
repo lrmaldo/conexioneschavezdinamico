@@ -9,10 +9,24 @@ use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
+use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\ProviderController;
 
-Route::get('/', function () {
+
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+Route::get('/productos', [ProductController::class, 'index'])->name('products.index');
+Route::get('/productos/{product}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/testimonios/{testimonial}', [TestimonialController::class, 'show'])->name('testimonials.show');
+Route::get('/testimonios', [TestimonialController::class, 'index'])->name('testimonials.index');
+Route::get('/proveedores/{provider}', [ProviderController::class, 'show'])->name('providers.show');
+/* index providers */
+Route::get('/proveedores', [ProviderController::class, 'index'])->name('providers.index');
+
+/* Route::get('/', function () {
     return view('welcome');
-})->name('home');
+})->name('home'); */
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
