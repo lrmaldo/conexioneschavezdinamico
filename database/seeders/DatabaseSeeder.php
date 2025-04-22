@@ -23,8 +23,12 @@ class DatabaseSeeder extends Seeder
         /* crear un usuario predeterminado */
         User::create([
             'name' => 'Administrator',
-            'email' => 'admin@example.com',
-            'password' => bcrypt('password'),
+            'email' => 'lrmaldo@gmail.com',
+            'password' => bcrypt('secret@'),
         ]);
+         $this->call([
+            ContactSeeder::class,
+            ScheduleSeeder::class,
+         ]);
     }
 }

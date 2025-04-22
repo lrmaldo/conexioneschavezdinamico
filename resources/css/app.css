@@ -680,32 +680,60 @@ select:disabled[data-flux-control] {
                transition-all sm:max-w-lg sm:w-full z-10 max-h-[90vh] flex flex-col;
     }
 
-    /* Animación de entrada para modal */
-    .modal-animation {
+    /* Clases personalizadas para los modales de confirmación */
+    .modal-backdrop {
+        @apply fixed inset-0 bg-gray-900/75 transition-opacity duration-300 z-50;
+    }
+
+    .modal-container {
+        @apply fixed inset-0 flex items-center justify-center z-50 overflow-y-auto;
+    }
+
+    .modal-content {
+        @apply bg-white rounded-lg overflow-hidden shadow-2xl transform transition-all
+               sm:max-w-md w-full mx-4 sm:mx-0 z-10;
         animation: scaleInCenter 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
     }
 
-    /* Área para arrastrar archivos */
-    .dropzone {
-        @apply border-2 border-dashed border-gray-300 rounded-lg p-6 text-center
-               hover:border-blue-500 transition-colors duration-200;
-
-        &.has-file {
-            @apply border-blue-500 bg-blue-50;
-        }
+    /* Definir scale-in-center como una clase normal en lugar de utilidad */
+    .scale-in-center {
+        animation: scaleInCenter 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
     }
 
-    /* Vista previa de imágenes */
-    .image-preview {
-        @apply mt-4 p-4 rounded-lg border;
+    /* Botones específicos para los modales */
+    .modal-btn-cancel {
+        @apply px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md
+               text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2
+               focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200;
+    }
 
-        &.current {
-            @apply bg-gray-50 border-gray-200;
-        }
+    .modal-btn-delete {
+        @apply px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm
+               text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2
+               focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200;
+    }
 
-        &.new {
-            @apply bg-blue-50 border-blue-200;
-        }
+    .modal-btn-save {
+        @apply px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm
+               text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2
+               focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200;
+    }
+
+    /* Animaciones específicas para los modales */
+    .modal-enter {
+        animation: modalEnter 0.3s ease-out forwards;
+    }
+
+    .modal-exit {
+        animation: modalExit 0.2s ease-in forwards;
+    }
+
+    .modal-backdrop-enter {
+        animation: fadeIn 0.2s ease-out forwards;
+    }
+
+    .modal-backdrop-exit {
+        animation: fadeOut 0.15s ease-in forwards;
     }
 }
 
@@ -747,4 +775,31 @@ select:disabled[data-flux-control] {
     .backdrop-blur-sm {
         backdrop-filter: blur(4px);
     }
+}
+
+@keyframes modalEnter {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes modalExit {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
 }
