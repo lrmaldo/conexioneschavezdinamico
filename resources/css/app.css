@@ -737,7 +737,158 @@ select:disabled[data-flux-control] {
     }
 }
 
-/* Animaciones adicionales para la galería */
+/* Estilos personalizados para el dashboard */
+@layer components {
+    /* Tarjetas de estadísticas con gradientes */
+    .dashboard-stat-card {
+        @apply relative overflow-hidden rounded-xl p-6 shadow-md transition-all duration-300 hover:scale-[1.02] hover:shadow-lg;
+    }
+
+    .dashboard-stat-card.blue {
+        @apply bg-gradient-to-br from-blue-500 to-indigo-600 dark:from-blue-700 dark:to-indigo-900;
+    }
+
+    .dashboard-stat-card.green {
+        @apply bg-gradient-to-br from-emerald-500 to-teal-600 dark:from-emerald-700 dark:to-teal-900;
+    }
+
+    .dashboard-stat-card.purple {
+        @apply bg-gradient-to-br from-purple-500 to-fuchsia-600 dark:from-purple-700 dark:to-fuchsia-900;
+    }
+
+    /* Iconos flotantes para tarjetas de dashboard */
+    .dashboard-icon {
+        @apply mr-5 flex h-14 w-14 items-center justify-center rounded-full bg-white/20 p-3 shadow backdrop-blur-sm;
+    }
+
+    /* Contenido de las tarjetas de estadísticas */
+    .stat-content {
+        @apply relative z-10 flex items-center text-white;
+    }
+
+    /* Elementos decorativos para tarjetas */
+    .stat-card-bubble-top {
+        @apply absolute -right-5 -top-5 h-24 w-24 rounded-full bg-white/10 backdrop-blur-sm;
+    }
+
+    .stat-card-bubble-bottom {
+        @apply absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-white/10 backdrop-blur-sm;
+    }
+
+    /* Tabla de productos recientes */
+    .recent-products-table {
+        @apply min-w-full divide-y divide-gray-200 dark:divide-gray-700;
+    }
+
+    .recent-products-table thead {
+        @apply bg-gray-50 dark:bg-gray-800;
+    }
+
+    .recent-products-table th {
+        @apply px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400;
+    }
+
+    .recent-products-table tr {
+        @apply transition-colors hover:bg-gray-50 dark:hover:bg-gray-800;
+    }
+
+    .recent-products-table td {
+        @apply whitespace-nowrap px-6 py-4;
+    }
+
+    /* Imágenes de productos en tabla */
+    .product-image {
+        @apply h-10 w-10 rounded-lg object-cover shadow-sm transition-transform hover:scale-110;
+    }
+
+    .product-image-placeholder {
+        @apply flex h-10 w-10 items-center justify-center rounded-lg bg-gray-200 text-xs text-gray-500 dark:bg-gray-700 dark:text-gray-400;
+    }
+
+    /* Encabezado de sección con badge */
+    .section-header-with-badge {
+        @apply mb-6 flex items-center justify-between;
+    }
+
+    .section-badge {
+        @apply rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-800 dark:bg-gray-700 dark:text-gray-200;
+    }
+}
+
+/* Animaciones para el dashboard */
+@layer utilities {
+    /* Animación para contadores numéricos */
+    @keyframes countUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .counter-animate {
+        animation: countUp 0.5s ease-out forwards;
+    }
+
+    /* Transiciones para tarjetas responsivas */
+    .card-grid-transition {
+        @apply transition-all duration-300 ease-in-out;
+    }
+
+    .card-content-transition {
+        @apply transition-all duration-200 ease-in-out;
+    }
+
+    /* Efecto de brillo para tarjetas */
+    .card-shine {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card-shine::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+            to bottom right,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.1) 50%,
+            rgba(255, 255, 255, 0) 100%
+        );
+        transform: rotate(30deg);
+        animation: shine 6s infinite linear;
+    }
+
+    @keyframes shine {
+        from {
+            transform: translateX(-100%) rotate(30deg);
+        }
+        to {
+            transform: translateX(100%) rotate(30deg);
+        }
+    }
+
+    /* Estilos específicos para modo oscuro */
+    .dark-mode-transition {
+        @apply transition-colors duration-300;
+    }
+
+    /* Efectos hover mejorados */
+    .hover-lift {
+        @apply transition-transform duration-300;
+    }
+
+    .hover-lift:hover {
+        @apply transform -translate-y-1;
+    }
+}
+
 @keyframes scaleInCenter {
     0% {
         transform: scale(0.8);

@@ -15,33 +15,32 @@
                 <flux:navbar.item icon="layout-grid" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
                     {{ __('Dashboard') }}
                 </flux:navbar.item>
+                <flux:navbar.item icon="tag" :href="route('categorias.index')" :current="request()->routeIs('categorias.index')" wire:navigate>
+                    {{ __('Categorías') }}
+                </flux:navbar.item>
+                <flux:navbar.item icon="shopping-bag" :href="route('productos.index')" :current="request()->routeIs('productos.index')" wire:navigate>
+                    {{ __('Productos') }}
+                </flux:navbar.item>
+                <flux:navbar.item icon="truck" :href="route('proveedores.index')" :current="request()->routeIs('proveedores.index')" wire:navigate>
+                    {{ __('Proveedores') }}
+                </flux:navbar.item>
+                <flux:navbar.item icon="message-square" :href="route('testimonios.index')" :current="request()->routeIs('testimonios.index')" wire:navigate>
+                    {{ __('Testimonios') }}
+                </flux:navbar.item>
+                <flux:navbar.item icon="mail" :href="route('contacto.index')" :current="request()->routeIs('contacto.index')" wire:navigate>
+                    {{ __('Contacto') }}
+                </flux:navbar.item>
+                <flux:navbar.item icon="clock" :href="route('horarios.index')" :current="request()->routeIs('horarios.index')" wire:navigate>
+                    {{ __('Horarios') }}
+                </flux:navbar.item>
+                <flux:navbar.item icon="image" :href="route('galeria.index')" :current="request()->routeIs('galeria.index')" wire:navigate>
+                    {{ __('Galería') }}
+                </flux:navbar.item>
             </flux:navbar>
 
             <flux:spacer />
 
-            <flux:navbar class="me-1.5 space-x-0.5 rtl:space-x-reverse py-0!">
-                <flux:tooltip :content="__('Search')" position="bottom">
-                    <flux:navbar.item class="!h-10 [&>div>svg]:size-5" icon="magnifying-glass" href="#" :label="__('Search')" />
-                </flux:tooltip>
-                <flux:tooltip :content="__('Repository')" position="bottom">
-                    <flux:navbar.item
-                        class="h-10 max-lg:hidden [&>div>svg]:size-5"
-                        icon="folder-git-2"
-                        href="https://github.com/laravel/livewire-starter-kit"
-                        target="_blank"
-                        :label="__('Repository')"
-                    />
-                </flux:tooltip>
-                <flux:tooltip :content="__('Documentation')" position="bottom">
-                    <flux:navbar.item
-                        class="h-10 max-lg:hidden [&>div>svg]:size-5"
-                        icon="book-open-text"
-                        href="https://laravel.com/docs/starter-kits"
-                        target="_blank"
-                        label="Documentation"
-                    />
-                </flux:tooltip>
-            </flux:navbar>
+
 
             <!-- Desktop User Menu -->
             <flux:dropdown position="top" align="end">
@@ -101,20 +100,33 @@
                     <flux:navlist.item icon="layout-grid" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
                     {{ __('Dashboard') }}
                     </flux:navlist.item>
+                    <flux:navlist.item icon="tag" :href="route('categorias.index')" :current="request()->routeIs('categorias.index')" wire:navigate>
+                    {{ __('Categorías') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item icon="shopping-bag" :href="route('productos.index')" :current="request()->routeIs('productos.index')" wire:navigate>
+                    {{ __('Productos') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item icon="truck" :href="route('proveedores.index')" :current="request()->routeIs('proveedores.index')" wire:navigate>
+                    {{ __('Proveedores') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item icon="message-square" :href="route('testimonios.index')" :current="request()->routeIs('testimonios.index')" wire:navigate>
+                    {{ __('Testimonios') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item icon="mail" :href="route('contacto.index')" :current="request()->routeIs('contacto.index')" wire:navigate>
+                    {{ __('Contacto') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item icon="clock" :href="route('horarios.index')" :current="request()->routeIs('horarios.index')" wire:navigate>
+                    {{ __('Horarios') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item icon="image" :href="route('galeria.index')" :current="request()->routeIs('galeria.index')" wire:navigate>
+                    {{ __('Galería') }}
+                    </flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
 
             <flux:spacer />
 
-            <flux:navlist variant="outline">
-                <flux:navlist.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
-                {{ __('Repository') }}
-                </flux:navlist.item>
 
-                <flux:navlist.item icon="book-open-text" href="https://laravel.com/docs/starter-kits" target="_blank">
-                {{ __('Documentation') }}
-                </flux:navlist.item>
-            </flux:navlist>
         </flux:sidebar>
 
         {{ $slot }}
