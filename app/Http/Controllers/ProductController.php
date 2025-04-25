@@ -17,7 +17,7 @@ class ProductController extends Controller
             'service' => '24h',  // Servicio de emergencia
         ];
         $products = Product::all();
-        return view('products.index');
+        return view('products.index',compact('products', 'companyStats'));
     }
     public function show(Product $product){
         $companyStats = [
