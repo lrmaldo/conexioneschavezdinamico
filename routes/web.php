@@ -15,7 +15,7 @@ use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\ProviderController;
 
 
-Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome')->name('home');
 Route::get('/productos', [ProductController::class, 'index'])->name('products.index');
 Route::get('/productos/{product}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/testimonios/{testimonial}', [TestimonialController::class, 'show'])->name('testimonials.show');
@@ -25,10 +25,6 @@ Route::get('/proveedores/{provider}', [ProviderController::class, 'show'])->name
 Route::get('/proveedores', [ProviderController::class, 'index'])->name('providers.index');
 
 
-
-/* Route::get('/', function () {
-    return view('welcome');
-})->name('home'); */
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
