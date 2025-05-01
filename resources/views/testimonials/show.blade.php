@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Conexiones, Bandas y Mangueras Chávez</title>
+  <title>Testimonio - {{ $testimonial->cliente }} | Conexiones Chávez</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -136,6 +136,83 @@
         transform: translate(0px, 0px) scale(1);
       }
     }
+    /* Estilos para la galería y lightbox */
+    .gallery-item {
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .gallery-item:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+    }
+    .lightbox-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+    }
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 90vh;
+      object-fit: contain;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .lightbox-close:hover {
+      transform: scale(1.2);
+    }
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      font-size: 24px;
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .lightbox-nav:hover {
+      background-color: rgba(250, 204, 21, 0.7);
+    }
+    .lightbox-prev {
+      left: 10px;
+    }
+    .lightbox-next {
+      right: 10px;
+    }
+    .testimonial-card {
+      position: relative;
+      overflow: hidden;
+      border-left: 4px solid #facc15;
+    }
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: -20px;
+      left: 20px;
+      font-size: 120px;
+      color: rgba(250, 204, 21, 0.1);
+      font-family: 'Georgia', serif;
+    }
   </style>
 </head>
 <body class="bg-image antialiased">
@@ -152,21 +229,98 @@
           <span class="font-bold text-xl md:text-2xl">Conexiones Chávez</span>
         </div>
         <div class="hidden md:flex space-x-8">
-          <a href="#inicio" class="hover:text-yellow-400 transition-colors font-medium">Inicio</a>
-          <a href="#quienes-somos" class="hover:text-yellow-400 transition-colors font-medium">Quiénes Somos</a>
-          <a href="#productos" class="hover:text-yellow-400 transition-colors font-medium">Productos</a>
-          <a href="#testimonios" class="hover:text-yellow-400 transition-colors font-medium">Testimonios</a>
-          <a href="#proveedores" class="hover:text-yellow-400 transition-colors font-medium">Proveedores</a>
-          <a href="#contacto" class="hover:text-yellow-400 transition-colors font-medium">Contacto</a>
+          <a href="{{ url('/') }}" class="hover:text-yellow-400 transition-colors font-medium">Inicio</a>
+          <a href="{{ url('/#quienes-somos') }}" class="hover:text-yellow-400 transition-colors font-medium">Quiénes Somos</a>
+          <a href="{{ url('/#productos') }}" class="hover:text-yellow-400 transition-colors font-medium">Productos</a>
+          <a href="{{ route('testimonials.index') }}" class="hover:text-yellow-400 transition-colors font-medium">Testimonios</a>
+          <a href="{{ url('/#proveedores') }}" class="hover:text-yellow-400 transition-colors font-medium">Proveedores</a>
+          <a href="{{ url('/#contacto') }}" class="hover:text-yellow-400 transition-colors font-medium">Contacto</a>
         </div>
         <button class="md:hidden">
           <i class="fas fa-bars text-2xl"></i>
         </button>
       </div>
     </nav>
+
     <!-- Contenido principal -->
+    <div class="container mx-auto px-4 pt-24 pb-12">
+      <!-- Encabezado -->
+      <div class="flex flex-col items-center justify-center mb-8">
+        <h1 class="text-3xl md:text-4xl font-bold text-white mb-2 text-center" data-aos="fade-down">Testimonio de Cliente</h1>
+        <div class="h-1 w-24 bg-yellow-500 rounded"></div>
+      </div>
 
+      <!-- Tarjeta principal de testimonio -->
+      <div class="bg-gray-900/80 rounded-lg shadow-xl overflow-hidden mb-10" data-aos="fade-up" data-aos-delay="100">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Imagen principal del testimonio -->
+          <div class="flex items-center justify-center p-6">
+            <div class="w-full max-w-md overflow-hidden rounded-lg shadow-lg border-2 border-yellow-500/30">
+              <img src="{{ asset('storage/' . $testimonial->imagen) }}" alt="Imagen de {{ $testimonial->cliente }}"
+                class="w-full h-auto object-cover transform transition-transform hover:scale-105 duration-300">
+            </div>
+          </div>
 
+          <!-- Información del testimonio -->
+          <div class="p-6 testimonial-card">
+            <div class="mb-6">
+              <h2 class="text-2xl font-bold text-white">{{ $testimonial->cliente }}</h2>
+              <p class="text-yellow-400 font-medium">{{ $testimonial->empresa }}</p>
+            </div>
+
+            <div class="text-gray-200 leading-relaxed">
+              <p class="text-lg">{{ $testimonial->mensaje }}</p>
+            </div>
+
+            <div class="mt-8 flex items-center">
+              <div class="flex text-yellow-400">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span class="ml-2 text-gray-300 text-sm">Cliente verificado</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Galería de imágenes adicionales -->
+      <div class="mb-10" data-aos="fade-up" data-aos-delay="200">
+        <h3 class="text-2xl font-bold text-white mb-6 flex items-center">
+          <i class="fas fa-images text-yellow-500 mr-3"></i>
+          Galería de imágenes
+        </h3>
+
+        @if($testimonial->images && $testimonial->images->count() > 0)
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            @foreach($testimonial->images as $index => $image)
+              <div class="gallery-item cursor-pointer rounded-lg overflow-hidden"
+                  onclick="openLightbox({{ $index }})"
+                  data-image="{{ asset('storage/' . $image->url) }}">
+                <img src="{{ asset('storage/' . $image->url) }}"
+                    alt="Imagen adicional {{ $index + 1 }}"
+                    class="w-full h-44 object-cover hover:brightness-110 transition">
+              </div>
+            @endforeach
+          </div>
+        @else
+          <div class="bg-gray-800/50 rounded-lg p-6 text-center text-gray-400">
+            <i class="far fa-images text-4xl mb-3 text-gray-500"></i>
+            <p>No hay imágenes adicionales disponibles.</p>
+          </div>
+        @endif
+      </div>
+
+      <!-- Botón para volver -->
+      <div class="flex justify-center my-8">
+        <a href="{{ route('testimonials.index') }}" class="px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-black font-bold rounded-md transition-all flex items-center">
+          <i class="fas fa-chevron-left mr-2"></i>
+          Ver todos los testimonios
+        </a>
+      </div>
+    </div>
 
     <div class="section-divider"></div>
 
@@ -190,6 +344,16 @@
         </div>
       </div>
     </footer>
+  </div>
+
+  <!-- Lightbox para las imágenes -->
+  <div id="lightbox" class="lightbox">
+    <div class="lightbox-content">
+      <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+      <img id="lightbox-img" class="lightbox-img" src="" alt="Imagen ampliada">
+      <span class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">&#10094;</span>
+      <span class="lightbox-nav lightbox-next" onclick="changeImage(1)">&#10095;</span>
+    </div>
   </div>
 
   <!-- Scripts adicionales para FontAwesome y AOS -->
@@ -219,6 +383,50 @@
           }
         });
       });
+    });
+
+    // Funcionalidad del Lightbox
+    let currentImageIndex = 0;
+    let galleryImages = [];
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Recoger todas las imágenes de la galería
+      const galleryItems = document.querySelectorAll('.gallery-item');
+      galleryImages = Array.from(galleryItems).map(item => item.dataset.image);
+    });
+
+    function openLightbox(index) {
+      currentImageIndex = index;
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+
+      lightboxImg.src = galleryImages[index];
+      lightbox.style.display = 'flex';
+      document.body.style.overflow = 'hidden'; // Prevenir scroll
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+      document.body.style.overflow = 'auto'; // Restaurar scroll
+    }
+
+    function changeImage(direction) {
+      currentImageIndex = (currentImageIndex + direction + galleryImages.length) % galleryImages.length;
+      document.getElementById('lightbox-img').src = galleryImages[currentImageIndex];
+    }
+
+    // Cerrar el lightbox con la tecla ESC
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
+      // Navegar con flechas izquierda y derecha
+      if (e.key === 'ArrowLeft') {
+        changeImage(-1);
+      }
+      if (e.key === 'ArrowRight') {
+        changeImage(1);
+      }
     });
   </script>
   @livewireScripts

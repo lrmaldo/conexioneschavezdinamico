@@ -24,6 +24,8 @@ Route::get('/proveedores/{provider}', [ProviderController::class, 'show'])->name
 /* index providers */
 Route::get('/proveedores', [ProviderController::class, 'index'])->name('providers.index');
 
+
+
 /* Route::get('/', function () {
     return view('welcome');
 })->name('home'); */

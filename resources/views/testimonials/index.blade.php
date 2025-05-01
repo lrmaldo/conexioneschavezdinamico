@@ -141,7 +141,7 @@
 <body class="bg-image antialiased">
   <div class="min-h-screen bg-gradient-to-b from-black/90 to-black/80">
     <!-- Navegación -->
-    <nav class="bg-black border-b border-yellow-500 text-white py-3 shadow-lg fixed w-full z-50">
+    <nav class="bg-black border-b border-yellow-500 text-white py-4 shadow-lg fixed w-full z-50 top-0 left-0">
       <div class="container mx-auto px-4 flex justify-between items-center">
         <div class="flex items-center space-x-4">
           <!-- Logo placeholder -->
@@ -152,21 +152,45 @@
           <span class="font-bold text-xl md:text-2xl">Conexiones Chávez</span>
         </div>
         <div class="hidden md:flex space-x-8">
-          <a href="#inicio" class="hover:text-yellow-400 transition-colors font-medium">Inicio</a>
-          <a href="#quienes-somos" class="hover:text-yellow-400 transition-colors font-medium">Quiénes Somos</a>
-          <a href="#productos" class="hover:text-yellow-400 transition-colors font-medium">Productos</a>
-          <a href="#testimonios" class="hover:text-yellow-400 transition-colors font-medium">Testimonios</a>
-          <a href="#proveedores" class="hover:text-yellow-400 transition-colors font-medium">Proveedores</a>
-          <a href="#contacto" class="hover:text-yellow-400 transition-colors font-medium">Contacto</a>
+            <a href="{{ url('/') }}" class="hover:text-yellow-400 transition-colors font-medium">Inicio</a>
+            <a href="{{ url('/#quienes-somos') }}" class="hover:text-yellow-400 transition-colors font-medium">Quiénes Somos</a>
+            <a href="{{ url('/#productos') }}" class="hover:text-yellow-400 transition-colors font-medium">Productos</a>
+            <a href="{{ route('testimonials.index') }}" class="hover:text-yellow-400 transition-colors font-medium">Testimonios</a>
+            <a href="{{ url('/#proveedores') }}" class="hover:text-yellow-400 transition-colors font-medium">Proveedores</a>
+            <a href="{{ url('/#contacto') }}" class="hover:text-yellow-400 transition-colors font-medium">Contacto</a>
         </div>
         <button class="md:hidden">
           <i class="fas fa-bars text-2xl"></i>
         </button>
       </div>
     </nav>
+
+    <!-- Espaciador para compensar el nav fijo -->
+    <div class="h-20"></div>
+
     <!-- Contenido principal -->
 
+    <!-- Sección de Testimonios -->
+    <section id="testimonios" class="py-20 relative">
+      <!-- Elementos decorativos para el fondo -->
+      <div class="absolute inset-0 overflow-hidden z-0">
+        <div class="absolute top-1/4 -left-20 w-40 h-40 bg-yellow-500 rounded-full opacity-5 animate-blob"></div>
+        <div class="absolute bottom-1/4 right-10 w-60 h-60 bg-yellow-500 rounded-full opacity-5 animate-blob animation-delay-2000"></div>
+      </div>
 
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="text-center mb-16" data-aos="fade-up">
+          <span class="text-yellow-500 font-semibold tracking-wider uppercase text-sm">Experiencias</span>
+          <h2 class="text-4xl md:text-5xl font-bold text-white mt-2 mb-2">Testimonios</h2>
+          <div class="w-16 h-1 bg-yellow-500 mx-auto my-4"></div>
+          <p class="text-xl text-gray-300 max-w-2xl mx-auto">Lo que nuestros clientes opinan sobre nuestros productos y servicios</p>
+        </div>
+
+        <div class="max-w-7xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+          <livewire:testimonial-table />
+        </div>
+      </div>
+    </section>
 
     <div class="section-divider"></div>
 
