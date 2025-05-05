@@ -184,7 +184,7 @@
           <span class="font-bold text-xl md:text-2xl">Conexiones Chávez</span>
         </div>
         <div class="hidden md:flex space-x-8">
-          <a href="{{ route('welcome') }}" class="hover:text-yellow-400 transition-colors font-medium">Inicio</a>
+          <a href="{{ url('/') }}" class="hover:text-yellow-400 transition-colors font-medium">Inicio</a>
           <a href="{{ route('products.index') }}" class="hover:text-yellow-400 transition-colors font-medium">Productos</a>
           <a href="#detalles" class="hover:text-yellow-400 transition-colors font-medium">Detalles</a>
           <a href="#galeria" class="hover:text-yellow-400 transition-colors font-medium">Galería</a>
