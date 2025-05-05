@@ -15,7 +15,7 @@ class ProductosCrud extends Component
     use WithFileUploads, WithPagination;
 
     public $isOpen = false;
-    public $product_id, $nombre, $descripcion, $icono, $imagen, $category_id;
+    public $product_id, $codigo, $nombre, $descripcion, $icono, $imagen, $category_id;
     public $imagenes = [];
     public $editing = false;
     public $productImages = []; // Nueva propiedad para almacenar las imágenes del producto
@@ -32,6 +32,7 @@ class ProductosCrud extends Component
     protected $paginationTheme = 'tailwind';
 
     protected $rules = [
+        'codigo' => 'nullable|unique:products,codigo',
         'nombre' => 'required|min:3',
         'descripcion' => 'required',
         'category_id' => 'required|exists:categories,id',
@@ -93,6 +94,7 @@ class ProductosCrud extends Component
     public function resetInput()
     {
         $this->product_id = null;
+        $this->codigo = '';
         $this->nombre = '';
         $this->descripcion = '';
         $this->icono = null;
@@ -104,10 +106,16 @@ class ProductosCrud extends Component
 
     public function store()
     {
+        // Ajustar la regla unique para permitir actualizar el mismo código
+        if ($this->editing) {
+            $this->rules['codigo'] = 'nullable|unique:products,codigo,' . $this->product_id;
+        }
+
         $this->validate();
 
         // Preparar datos para guardar
         $data = [
+            'codigo' => $this->codigo,
             'nombre' => $this->nombre,
             'descripcion' => $this->descripcion,
             'category_id' => $this->category_id,
@@ -161,6 +169,7 @@ class ProductosCrud extends Component
     {
         $product = Product::findOrFail($id);
         $this->product_id = $id;
+        $this->codigo = $product->codigo;
         $this->nombre = $product->nombre;
         $this->descripcion = $product->descripcion;
         $this->icono = $product->icono;

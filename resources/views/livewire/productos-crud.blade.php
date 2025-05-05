@@ -121,6 +121,15 @@
                                         </span>
                                     </div>
                                 @endif
+
+                                <!-- Badge para código del producto -->
+                                @if($producto->codigo)
+                                <div class="absolute bottom-2 left-2">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-mono bg-gray-800 text-white">
+                                        {{ $producto->codigo }}
+                                    </span>
+                                </div>
+                                @endif
                             </div>
 
                             <!-- Contenido de la tarjeta con espaciado adecuado -->
@@ -240,86 +249,86 @@
                                             >
                                         </div>
                                         @error('nombre') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
-                                    </div>
+                                    </div>   class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition-colors duration-200"
 
                                     <div>
                                         <label for="category_id" class="block text-sm font-medium text-gray-700">Categoría</label>
-                                        <div class="mt-1">
+                                        <div class="mt-1"> class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                                             <select
                                                 id="category_id"
                                                 wire:model.defer="category_id"
-                                                class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition-colors duration-200"
-                                            >
-                                                <option value="">Seleccionar categoría</option>
-                                                @foreach($categorias as $categoria)
+                                                class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition-colors duration-200"abel for="category_id" class="block text-sm font-medium text-gray-700">Categoría</label>
+                                            >  <div class="mt-1">
+                                                <option value="">Seleccionar categoría</option>                                            <select
+                                                @foreach($categorias as $categoria)="category_id"
                                                     <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
-                                                @endforeach
+                                                @endforeach"block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition-colors duration-200"
                                             </select>
-                                        </div>
-                                        @error('category_id') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
-                                    </div>
+                                        </div>e="">Seleccionar categoría</option>
+                                        @error('category_id') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderrorategoria)
+                                    </div><option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
                                 </div>
 
                                 <div class="mt-6">
-                                    <label for="descripcion" class="block text-sm font-medium text-gray-700">Descripción</label>
+                                    <label for="descripcion" class="block text-sm font-medium text-gray-700">Descripción</label>rror('category_id') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                                     <div class="mt-1">
                                         <textarea
                                             id="descripcion"
                                             wire:model.defer="descripcion"
-                                            rows="4"
+                                            rows="4"l for="descripcion" class="block text-sm font-medium text-gray-700">Descripción</label>
                                             class="shadow-sm block w-full px-4 py-3 border border-gray-300 rounded-md text-gray-700 leading-relaxed bg-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 hover:border-gray-400 transition-all duration-200 ease-in-out resize-y"
                                             placeholder="Describe el producto con detalle..."
                                         ></textarea>
                                     </div>
                                     @error('descripcion') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
-                                </div>
+                                </div>ock w-full px-4 py-3 border border-gray-300 rounded-md text-gray-700 leading-relaxed bg-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 hover:border-gray-400 transition-all duration-200 ease-in-out resize-y"
 
                                 <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Icono</label>
                                         <div class="mt-1 flex items-center">
                                             <div class="bg-gray-100 rounded-lg p-2 mr-4 w-16 h-16 flex items-center justify-center overflow-hidden">
-                                                @if($icono && !is_string($icono))
+                                                @if($icono && !is_string($icono))grid-cols-1 md:grid-cols-2 gap-6">
                                                     <img src="{{ $icono->temporaryUrl() }}" class="max-h-full object-cover">
                                                 @elseif($icono)
-                                                    <img src="{{ Storage::url($icono) }}" class="max-h-full object-cover">
-                                                @else
-                                                    <svg class="h-8 w-8 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                                                    <img src="{{ Storage::url($icono) }}" class="max-h-full object-cover">1 flex items-center">
+                                                @elseer justify-center overflow-hidden">
+                                                    <svg class="h-8 w-8 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">$icono && !is_string($icono))
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />      <img src="{{ $icono->temporaryUrl() }}" class="max-h-full object-cover">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                    </svg>
-                                                @endif
-                                            </div>
-                                            <label for="icono" class="cursor-pointer bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                Cambiar
+                                                    </svg>          <img src="{{ Storage::url($icono) }}" class="max-h-full object-cover">
+                                                @endif                                                @else
+                                            </div>           <svg class="h-8 w-8 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <label for="icono" class="cursor-pointer bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">th="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                                                Cambiar="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
                                                 <input type="file" id="icono" wire:model="icono" class="sr-only">
                                             </label>
                                         </div>
-                                        @error('icono') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
+                                        @error('icono') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderrorlass="cursor-pointer bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                     </div>
-
+t type="file" id="icono" wire:model="icono" class="sr-only">
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Imagen Principal</label>
-                                        <div class="mt-1 flex items-center">
+                                        <div class="mt-1 flex items-center"> class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                                             <div class="bg-gray-100 rounded-lg p-2 mr-4 w-16 h-16 flex items-center justify-center overflow-hidden">
                                                 @if($imagen && !is_string($imagen))
                                                     <img src="{{ $imagen->temporaryUrl() }}" class="max-h-full object-cover">
-                                                @elseif($imagen)
+                                                @elseif($imagen)lock text-sm font-medium text-gray-700">Imagen Principal</label>
                                                     <img src="{{ Storage::url($imagen) }}" class="max-h-full object-cover">
-                                                @else
-                                                    <svg class="h-8 w-8 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                                    </svg>
-                                                @endif
-                                            </div>
-                                            <label for="imagen" class="cursor-pointer bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                Cambiar
+                                                @elsess="bg-gray-100 rounded-lg p-2 mr-4 w-16 h-16 flex items-center justify-center overflow-hidden">
+                                                    <svg class="h-8 w-8 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">  @if($imagen && !is_string($imagen))
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />r">
+                                                    </svg>      @elseif($imagen)
+                                                @endif              <img src="{{ Storage::url($imagen) }}" class="max-h-full object-cover">
+                                            </div>                                                @else
+                                            <label for="imagen" class="cursor-pointer bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">  <svg class="h-8 w-8 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                Cambiarth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                                 <input type="file" id="imagen" wire:model="imagen" class="sr-only">
                                             </label>
                                         </div>
-                                        @error('imagen') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
-                                    </div>
-                                </div>
+                                        @error('imagen') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderrorfocus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    </div>mbiar
+                                </div>model="imagen" class="sr-only">
 
                                 <div class="mt-6">
                                     <label class="block text-sm font-medium text-gray-700">Imágenes adicionales</label>
@@ -327,15 +336,15 @@
                                         <div class="space-y-1 text-center">
                                             <svg class="mx-auto h-12 w-12 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                                            </svg>
-                                            <div class="flex text-sm text-gray-600">
+                                            </svg>ss="block text-sm font-medium text-gray-700">Imágenes adicionales</label>
+                                            <div class="flex text-sm text-gray-600">lass="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                                                 <label for="imagenes" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                                    <span>Subir archivos</span>
-                                                    <input id="imagenes" wire:model="imagenes" type="file" multiple class="sr-only">
+                                                    <span>Subir archivos</span>                                            <svg class="mx-auto h-12 w-12 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <input id="imagenes" wire:model="imagenes" type="file" multiple class="sr-only">" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                                                 </label>
                                                 <p class="pl-1">o arrastrar y soltar</p>
-                                            </div>
-                                            <p class="text-xs text-gray-500">PNG, JPG, GIF hasta 1MB</p>
+                                            </div>relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                            <p class="text-xs text-gray-500">PNG, JPG, GIF hasta 1MB</p>an>
                                         </div>
                                     </div>
                                     @error('imagenes.*') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
@@ -343,18 +352,18 @@
                                     <!-- Preview de imágenes temporales -->
                                     @if($imagenes)
                                         <div class="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                                            @foreach($imagenes as $tempImage)
+                                            @foreach($imagenes as $tempImage)p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                                                 <div class="relative group">
-                                                    <img src="{{ $tempImage->temporaryUrl() }}" class="h-24 w-full object-cover rounded-lg">
-                                                    <div class="absolute inset-0 bg-black bg-opacity-50 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                                        <button type="button" wire:click="$set('imagenes', [])" class="text-white">
-                                                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            @endforeach
+                                                    <img src="{{ $tempImage->temporaryUrl() }}" class="h-24 w-full object-cover rounded-lg">genes temporales -->
+                                                    <div class="absolute inset-0 bg-black bg-opacity-50 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">nes)
+                                                        <button type="button" wire:click="$set('imagenes', [])" class="text-white">iv class="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                                                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">                                            @foreach($imagenes as $tempImage)
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />ative group">
+                                                            </svg> $tempImage->temporaryUrl() }}" class="h-24 w-full object-cover rounded-lg">
+                                                        </button>lass="absolute inset-0 bg-black bg-opacity-50 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                                    </div>lass="text-white">
+                                                </div> fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            @endforeachap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                                         </div>
                                     @endif
 
@@ -363,43 +372,43 @@
                                         <div class="mt-4">
                                             <h4 class="font-medium text-sm text-gray-700">Imágenes guardadas</h4>
                                             <div class="mt-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                                                @foreach($productImages as $image)
-                                                    <div class="relative group">
+                                                @foreach($productImages as $image)>
+                                                    <div class="relative group">ct_id)
                                                         <img src="{{ Storage::url($image->url) }}" class="h-24 w-full object-cover rounded-lg">
-                                                        <div class="absolute inset-0 bg-black bg-opacity-50 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                                            <button type="button" wire:click="deleteImage({{ $image->id }})" class="text-white hover:text-red-400">
-                                                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                                </svg>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                @endforeach
+                                                        <div class="absolute inset-0 bg-black bg-opacity-50 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">ass="font-medium text-sm text-gray-700">Imágenes guardadas</h4>
+                                                            <button type="button" wire:click="deleteImage({{ $image->id }})" class="text-white hover:text-red-400">iv class="mt-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                                                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">      @foreach($productImages as $image)
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />              <div class="relative group">
+                                                                </svg>                                                        <img src="{{ Storage::url($image->url) }}" class="h-24 w-full object-cover rounded-lg">
+                                                            </button>inset-0 bg-black bg-opacity-50 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                                        </div>                 <button type="button" wire:click="deleteImage({{ $image->id }})" class="text-white hover:text-red-400">
+                                                    </div>           <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                @endforeach   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                             </div>
                                         </div>
-                                    @endif
-                                </div>
-
-                                <div class="mt-8 flex justify-end space-x-3">
+                                    @endif                   </div>
+                                </div>    </div>
+   @endforeach
+                                <div class="mt-8 flex justify-end space-x-3"> </div>
                                     <button
                                         type="button"
-                                        wire:click="closeModal()"
+                                        wire:click="closeModal()">
                                         class="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                        x-on:click="document.body.classList.remove('overflow-hidden');"
-                                    >
-                                        Cancelar
-                                    </button>
-                                    <button
-                                        type="submit"
-                                        class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                    >
-                                        {{ $editing ? 'Actualizar' : 'Guardar' }}
-                                    </button>
-                                </div>
-                            </form>
+                                        x-on:click="document.body.classList.remove('overflow-hidden');"t-8 flex justify-end space-x-3">
+                                    >utton
+                                        Cancelar     type="button"
+                                    </button>          wire:click="closeModal()"
+                                    <button              class="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                        type="submit"                  x-on:click="document.body.classList.remove('overflow-hidden');"
+                                        class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"                  >
+                                    >                          Cancelar
+                                        {{ $editing ? 'Actualizar' : 'Guardar' }}                          </button>
+                                    </button>                                    <button
+                                </div>submit"
+                            </form>                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         </div>
-                    </div>
-                </div>
+                    </div>iting ? 'Actualizar' : 'Guardar' }}
+                </div>         </button>
             </div>
         </div>
     @endif
@@ -409,43 +418,57 @@
         document.addEventListener('livewire:initialized', () => {
             @this.on('confirm-delete', id => {
                 Swal.fire({
-                    title: '¿Estás seguro?',
+                    title: '¿Estás seguro?',>
                     text: "Esta acción no se puede revertir",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Sí, eliminar',
-                    cancelButtonText: 'Cancelar'
+                    icon: 'warning',ventListener('livewire:initialized', () => {
+                    showCancelButton: true,on('confirm-delete', id => {
+                    confirmButtonColor: '#3085d6', Swal.fire({
+                    cancelButtonColor: '#d33',         title: '¿Estás seguro?',
+                    confirmButtonText: 'Sí, eliminar',       text: "Esta acción no se puede revertir",
+                    cancelButtonText: 'Cancelar'                    icon: 'warning',
                 }).then((result) => {
-                    if (result.isConfirmed) {
-                        @this.call('delete', id);
-                    }
-                })
-            });
+                    if (result.isConfirmed) {         confirmButtonColor: '#3085d6',
+                        @this.call('delete', id);',
+                    }onText: 'Sí, eliminar',
+                })  cancelButtonText: 'Cancelar'
+            });sult) => {
         });
-    </script>
-
+    </script>           @this.call('delete', id);
+    }
     <!-- Estilos adicionales para animaciones y transiciones -->
     <style>
         /* Animación para la notificación */
-        @keyframes fadeInDown {
+        @keyframes fadeInDown {ipt>
             from {
-                opacity: 0;
+                opacity: 0;ra animaciones y transiciones -->
                 transform: translate3d(0, -20px, 0);
-            }
-            to {
+            }* Animación para la notificación */
+            to {        @keyframes fadeInDown {
                 opacity: 1;
-                transform: translate3d(0, 0, 0);
-            }
+                transform: translate3d(0, 0, 0);: 0;
+            }ate3d(0, -20px, 0);
         }
 
         .animate-fade-in-down {
-            animation: fadeInDown 0.5s ease-out;
-        }
+            animation: fadeInDown 0.5s ease-out;       transform: translate3d(0, 0, 0);
+        }            }
 
         /* Truncar texto con ellipsis después de 2 líneas */
         .line-clamp-2 {
+            display: -webkit-box;   animation: fadeInDown 0.5s ease-out;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;        /* Truncar texto con ellipsis después de 2 líneas */
+
+
+
+
+
+
+
+
+
+</div>    </style>        }            padding-bottom: 75%;        .pb-2\/3 {        /* Proporción 2:3 para las imágenes en las tarjetas */        }        .line-clamp-2 {
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;

@@ -100,6 +100,11 @@
                             <div class="absolute top-2 right-2 bg-yellow-500 text-black px-2 py-1 rounded-full text-xs font-bold">
                                 {{ $product->category->nombre }}
                             </div>
+                            @if($product->codigo)
+                                <div class="absolute top-2 left-2 bg-gray-900/80 text-white px-2 py-1 rounded-full text-xs font-mono">
+                                    {{ $product->codigo }}
+                                </div>
+                            @endif
                         </div>
 
                         <div class="p-4">
@@ -109,6 +114,10 @@
                                 </div>
                                 <h2 class="text-lg font-bold text-white flex-1">{{ $product->nombre }}</h2>
                             </div>
+
+                            @if($product->codigo)
+                                <p class="text-gray-300 text-xs font-mono mb-2">Cód: {{ $product->codigo }}</p>
+                            @endif
 
                             <p class="text-gray-400 text-sm mb-4 line-clamp-2">{{ $product->descripcion }}</p>
 

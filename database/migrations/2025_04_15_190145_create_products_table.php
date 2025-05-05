@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre')->nullable();
             $table->text('descripcion')->nullable();
+            $table->string('codigo')->nullable()->unique();
             $table->string('icono')->nullable(); // clase FA o nombre
             $table->string('imagen')->nullable(); // ruta de imagen
             $table->foreignId('category_id')->nullable()->constrained()->onDelete('cascade');

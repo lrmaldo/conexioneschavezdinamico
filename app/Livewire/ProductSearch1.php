@@ -47,7 +47,8 @@ class ProductSearch1 extends Component
             ->when($this->search, function($query) {
                 return $query->where(function($q) {
                     $q->where('nombre', 'like', '%' . $this->search . '%')
-                      ->orWhere('descripcion', 'like', '%' . $this->search . '%');
+                      ->orWhere('descripcion', 'like', '%' . $this->search . '%')
+                      ->orWhere('codigo', 'like', '%' . $this->search . '%');
                 });
             })
             ->when($this->category, function($query) {

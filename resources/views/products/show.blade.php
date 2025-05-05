@@ -237,7 +237,7 @@
                 </div>
                 <div class="bg-black/60 p-4 rounded border-l-4 border-yellow-500 shadow-md">
                   <h3 class="text-yellow-400 text-lg font-semibold mb-2">Código</h3>
-                  <p class="text-white">PROD-{{ str_pad($product->id, 4, '0', STR_PAD_LEFT) }}</p>
+                  <p class="text-white font-mono">{{ $product->codigo ?? 'PROD-' . str_pad($product->id, 4, '0', STR_PAD_LEFT) }}</p>
                 </div>
               </div>
 
