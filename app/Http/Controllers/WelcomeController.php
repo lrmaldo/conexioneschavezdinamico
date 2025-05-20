@@ -9,7 +9,7 @@ use App\Models\Provider;
 use App\Models\Testimonial;
 use App\Models\Contact;
 use App\Models\Schedule;
-use App\Models\GaleryImage;
+use App\Models\GalleryImage;
 
 class WelcomeController extends Controller
 {
@@ -21,6 +21,7 @@ class WelcomeController extends Controller
         $testimonials = Testimonial::take(3)->get();
         $contact = Contact::first();
         $schedule = Schedule::first();
+        $galleryImages = GalleryImage::take(4)->get();
         $companyStats = [
             'experience' => 11, // Años de experiencia
             'clients' => 1000,  // Clientes satisfechos
@@ -35,7 +36,8 @@ class WelcomeController extends Controller
             'testimonials',
             'contact',
             'schedule',
-            'companyStats'
+            'companyStats',
+            'galleryImages'
         ));
     }
 }

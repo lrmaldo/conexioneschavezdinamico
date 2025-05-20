@@ -13,6 +13,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\ProviderController;
+use App\Http\Controllers\GalleryController;
 
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome')->name('home');
@@ -23,7 +24,7 @@ Route::get('/testimonios', [TestimonialController::class, 'index'])->name('testi
 Route::get('/proveedores/{provider}', [ProviderController::class, 'show'])->name('providers.show');
 /* index providers */
 Route::get('/proveedores', [ProviderController::class, 'index'])->name('providers.index');
-
+Route::get('/galeria', [GalleryController::class, 'index'])->name('gallery.index');
 
 
 Route::view('dashboard', 'dashboard')
