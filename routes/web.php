@@ -26,6 +26,12 @@ Route::get('/proveedores/{provider}', [ProviderController::class, 'show'])->name
 Route::get('/proveedores', [ProviderController::class, 'index'])->name('providers.index');
 Route::get('/galeria', [GalleryController::class, 'index'])->name('gallery.index');
 
+/* Tarjetas de presentación (links para NFC) */
+Route::view('/tarjetapresentacion-adriana', 'tarjetas.adriana')->name('tarjeta.adriana');
+Route::view('/tarjetapresentacion-victor', 'tarjetas.victor')->name('tarjeta.victor');
+/* Redirección por posible error de escritura */
+Route::redirect('/tarjetapresnetacion-victor', '/tarjetapresentacion-victor', 301);
+
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
