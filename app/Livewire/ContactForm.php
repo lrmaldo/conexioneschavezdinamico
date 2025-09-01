@@ -16,7 +16,28 @@ class ContactForm extends Component
     public $instagram;
     public $whatsapp;
 
-    public $mensaje;
+    // Mensaje de feedback (modal)
+    public $flashMessage;
+
+    protected $rules = [
+        'telefono1' => 'nullable|string|max:30',
+        'telefono2' => 'nullable|string|max:30',
+        'correo' => 'nullable|email|max:255',
+        'direccion' => 'nullable|string|max:255',
+        'facebook' => 'nullable|string|max:255', // podría ser url
+        'instagram' => 'nullable|string|max:255', // podría ser url
+        'whatsapp' => 'nullable|string|max:30',
+    ];
+
+    protected $validationAttributes = [
+        'telefono1' => 'teléfono 1',
+        'telefono2' => 'teléfono 2',
+        'correo' => 'correo',
+        'direccion' => 'dirección',
+        'facebook' => 'Facebook',
+        'instagram' => 'Instagram',
+        'whatsapp' => 'WhatsApp',
+    ];
 
     public function mount()
     {
@@ -36,23 +57,19 @@ class ContactForm extends Component
 
     public function actualizar()
     {
+        $data = $this->validate();
+
         $contact = Contact::find($this->contactId);
 
         if ($contact) {
-            $contact->update([
-                'telefono1' => $this->telefono1,
-                'telefono2' => $this->telefono2,
-                'correo' => $this->correo,
-                'direccion' => $this->direccion,
-                'facebook' => $this->facebook,
-                'instagram' => $this->instagram,
-                'whatsapp' => $this->whatsapp,
-            ]);
-
-            $this->mensaje = '¡Información de contacto actualizada correctamente!';
-            // Usar 'mostrar-modal' con guion medio para coincidir con la vista
-            $this->dispatch('mostrar-modal');
+            $contact->update($data);
+        } else {
+            $contact = Contact::create($data);
+            $this->contactId = $contact->id;
         }
+
+        $this->flashMessage = '¡Información de contacto guardada correctamente!';
+        $this->dispatch('mostrar-modal');
     }
 
     public function render()

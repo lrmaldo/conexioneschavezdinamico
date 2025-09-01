@@ -54,59 +54,47 @@
 
     </div>
 
-    <div>
-        @if (session()->has('message'))
-            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4"
-                role="alert">
-                <span class="block sm:inline">{{ session('message') }}</span>
-            </div>
-        @endif
-
-        <form wire:submit.prevent="submit" class="space-y-6">
+    <div class="max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold mb-6">Datos de contacto de la empresa</h2>
+        <form wire:submit.prevent="actualizar" class="grid gap-6 md:grid-cols-2">
             <div>
-                <label class="block text-gray-700 mb-2 font-medium" for="nombre">Nombre completo</label>
-                <input wire:model="nombre" type="text" id="nombre"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                    placeholder="Tu nombre">
-                @error('nombre')
-                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                @enderror
+                <label class="block text-gray-700 mb-2 font-medium" for="telefono1">Teléfono 1</label>
+                <input wire:model.defer="telefono1" type="text" id="telefono1" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent" placeholder="Teléfono principal">
+                @error('telefono1') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
             </div>
-
             <div>
-                <label class="block text-gray-700 mb-2 font-medium" for="email">Correo electrónico</label>
-                <input wire:model="email" type="email" id="email"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                    placeholder="tucorreo@ejemplo.com">
-                @error('email')
-                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                @enderror
+                <label class="block text-gray-700 mb-2 font-medium" for="telefono2">Teléfono 2</label>
+                <input wire:model.defer="telefono2" type="text" id="telefono2" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent" placeholder="Teléfono secundario">
+                @error('telefono2') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
             </div>
-
             <div>
-                <label class="block text-gray-700 mb-2 font-medium" for="telefono">Teléfono</label>
-                <input wire:model="telefono" type="tel" id="telefono"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                    placeholder="Tu número telefónico">
-                @error('telefono')
-                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                @enderror
+                <label class="block text-gray-700 mb-2 font-medium" for="correo">Correo</label>
+                <input wire:model.defer="correo" type="email" id="correo" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent" placeholder="correo@empresa.com">
+                @error('correo') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
             </div>
-
+            <div class="md:col-span-2">
+                <label class="block text-gray-700 mb-2 font-medium" for="direccion">Dirección</label>
+                <input wire:model.defer="direccion" type="text" id="direccion" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent" placeholder="Dirección completa">
+                @error('direccion') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+            </div>
             <div>
-                <label class="block text-gray-700 mb-2 font-medium" for="mensaje">Mensaje</label>
-                <textarea wire:model="mensaje" id="mensaje" rows="4"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                    placeholder="¿En qué podemos ayudarte?"></textarea>
-                @error('mensaje')
-                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                @enderror
+                <label class="block text-gray-700 mb-2 font-medium" for="facebook">Facebook</label>
+                <input wire:model.defer="facebook" type="text" id="facebook" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent" placeholder="URL o usuario Facebook">
+                @error('facebook') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
             </div>
-
-            <button type="submit"
-                class="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-4 rounded-lg transition-colors">
-                Enviar mensaje
-            </button>
+            <div>
+                <label class="block text-gray-700 mb-2 font-medium" for="instagram">Instagram</label>
+                <input wire:model.defer="instagram" type="text" id="instagram" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent" placeholder="URL o usuario Instagram">
+                @error('instagram') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+            </div>
+            <div>
+                <label class="block text-gray-700 mb-2 font-medium" for="whatsapp">WhatsApp</label>
+                <input wire:model.defer="whatsapp" type="text" id="whatsapp" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent" placeholder="Número WhatsApp">
+                @error('whatsapp') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+            </div>
+            <div class="md:col-span-2 flex justify-end">
+                <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded-lg transition-colors">Guardar</button>
+            </div>
         </form>
     </div>
 </div>

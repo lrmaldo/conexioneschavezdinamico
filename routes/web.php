@@ -34,6 +34,8 @@ Route::redirect('/tarjetapresentacion-adriana', '/tarjeta-presentacion-adriana',
 Route::redirect('/tarjetapresentacion-victor', '/tarjeta-presentacion-victor', 301);
 Route::redirect('/tarjetapresnetacion-victor', '/tarjeta-presentacion-victor', 301);
 
+Route::view('/tarjeta-impresion-adriana', 'tarjetas.tarjeta-impresion')->name('tarjeta.impresion.adriana');
+Route::view('/tarjeta-impresion-victor', 'tarjetas.tarjeta-impresion-victor')->name('tarjeta.impresion.victor');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
