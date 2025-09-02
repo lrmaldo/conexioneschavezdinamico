@@ -28,6 +28,60 @@
     .card-gradient { background: linear-gradient(145deg, rgba(17,17,17,.9) 0%, rgba(34,34,34,.85) 60%, rgba(0,0,0,.9) 100%); }
     .glass { backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
     .divider { height:2px; background:linear-gradient(90deg, transparent, #facc15, transparent); margin:1.25rem 0; }
+
+    /* Estilos responsivos adicionales */
+    @media (max-width: 640px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      .divider {
+        margin: 1rem 0;
+      }
+      main {
+        padding: 0 0.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .blob {
+        filter: blur(40px);
+      }
+      .text-lg {
+        font-size: 1rem;
+      }
+      .p-6 {
+        padding: 1rem;
+      }
+      .p-3 {
+        padding: 0.75rem;
+      }
+      h1.text-2xl {
+        font-size: 1.25rem;
+      }
+      .space-y-3 > * {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .divider {
+        margin: 0.75rem 0;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .w-10.h-10 {
+        width: 2rem;
+        height: 2rem;
+      }
+      .text-xs {
+        font-size: 0.65rem;
+      }
+      button span, a span {
+        font-size: 0.85rem;
+      }
+      .gap-3 {
+        gap: 0.5rem;
+      }
+    }
   </style>
 </head>
 <body class="min-h-screen text-white flex items-center justify-center p-4 md:p-6 relative">

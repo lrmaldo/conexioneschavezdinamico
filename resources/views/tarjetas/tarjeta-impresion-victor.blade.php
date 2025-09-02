@@ -128,6 +128,72 @@
         display: none;
       }
     }
+
+    /* Media queries para dispositivos móviles */
+    @media (max-width: 480px) {
+      .container {
+        padding: 10px;
+      }
+
+      .card {
+        width: 300px;
+        height: auto;
+        flex-direction: column;
+        padding: 15px;
+      }
+
+      .logo-section {
+        margin-bottom: 5px;
+      }
+
+      .logo {
+        width: 100px;
+        margin-top: 5px;
+      }
+
+      .title {
+        font-size: 1.1rem;
+        margin-bottom: 3px;
+      }
+
+      .qr-section {
+        margin-top: 5px;
+      }
+
+      .qr {
+        width: 100px;
+        height: 100px;
+        padding: 6px;
+      }
+
+      .download-button {
+        margin-top: 20px;
+        font-size: 0.9rem;
+        padding: 10px 20px;
+      }
+    }
+
+    /* Media queries para dispositivos muy pequeños */
+    @media (max-width: 320px) {
+      .card {
+        width: 260px;
+        padding: 10px;
+      }
+
+      .logo {
+        width: 90px;
+      }
+
+      .title {
+        font-size: 1rem;
+      }
+
+      .qr {
+        width: 90px;
+        height: 90px;
+        padding: 5px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -156,11 +222,49 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script>
-    // Generar el código QR
+    // Función para aplicar clases adaptativas según el tamaño de pantalla
+    function applyResponsiveClasses() {
+      const container = document.querySelector('.container');
+      const card = document.querySelector('.card');
+
+      if (window.innerWidth <= 320) {
+        container.classList.add('mobile-xs');
+        card.classList.add('mobile-xs');
+      } else if (window.innerWidth <= 480) {
+        container.classList.add('mobile');
+        container.classList.remove('mobile-xs');
+        card.classList.add('mobile');
+        card.classList.remove('mobile-xs');
+      } else {
+        container.classList.remove('mobile', 'mobile-xs');
+        card.classList.remove('mobile', 'mobile-xs');
+      }
+    }
+
+    // Aplicar clases al cargar
+    applyResponsiveClasses();
+
+    // Actualizar cuando cambia el tamaño o la orientación
+    window.addEventListener('resize', applyResponsiveClasses);
+    window.addEventListener('orientationchange', applyResponsiveClasses);
+
+    // Ajustar el tamaño del QR según el tamaño de pantalla
+    function getQRSize() {
+      if (window.innerWidth <= 320) {
+        return 80;
+      } else if (window.innerWidth <= 480) {
+        return 90;
+      } else {
+        return 105;
+      }
+    }
+
+    // Generar el código QR con tamaño adaptativo
+    const qrSize = getQRSize();
     new QRCode(document.getElementById("qrcode"), {
       text: "https://mangueraschavez.com/tarjeta-presentacion-victor",
-      width: 105,
-      height: 105,
+      width: qrSize,
+      height: qrSize,
       colorDark : "#000000",
       colorLight : "#ffffff",
       correctLevel : QRCode.CorrectLevel.H
@@ -170,6 +274,26 @@
     document.getElementById('downloadBtn').addEventListener('click', function() {
       const cardElement = document.getElementById('cardContainer');
       const downloadBtn = this;
+
+      // En móviles, cambiamos temporalmente la tarjeta a horizontal para mejor calidad en la descarga
+      const isMobile = window.innerWidth <= 480;
+      let originalStyles = {};
+
+      if (isMobile) {
+        // Guardar estilos originales
+        originalStyles = {
+          width: cardElement.style.width,
+          height: cardElement.style.height,
+          flexDirection: cardElement.style.flexDirection,
+          padding: cardElement.style.padding
+        };
+
+        // Forzar estilo horizontal para la captura (mejor calidad)
+        cardElement.style.width = '380px';
+        cardElement.style.height = '210px';
+        cardElement.style.flexDirection = 'row';
+        cardElement.style.padding = '15px 25px';
+      }
 
       // Cambiar el texto del botón mientras procesa
       downloadBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/><path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/></svg> Generando...';
@@ -184,13 +308,21 @@
           logging: false,
           useCORS: true
         }).then(canvas => {
+          // Restaurar estilos originales si estábamos en móvil
+          if (isMobile) {
+            cardElement.style.width = originalStyles.width;
+            cardElement.style.height = originalStyles.height;
+            cardElement.style.flexDirection = originalStyles.flexDirection;
+            cardElement.style.padding = originalStyles.padding;
+          }
+
           // Convertir a imagen
           const imgData = canvas.toDataURL('image/png');
 
           // Crear un enlace temporal para descargar
           const link = document.createElement('a');
           link.href = imgData;
-          link.download = 'tarjeta_mangueras_chavez.png';
+          link.download = 'tarjeta_mangueras_chavez_victor.png';
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
