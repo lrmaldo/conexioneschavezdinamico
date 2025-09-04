@@ -96,7 +96,7 @@
       <!-- Columna Foto -->
       <div class="relative md:rounded-2xl rounded-t-2xl md:rounded-tr-none overflow-hidden group" data-aos="zoom-in" data-aos-delay="150">
         <div class="absolute inset-0 bg-gradient-to-b from-yellow-500/30 to-black/80 opacity-70 group-hover:opacity-90 transition-opacity"></div>
-  <img src="/img/adriana.jpeg" alt="Adriana Chávez" class="w-full h-72 md:h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-[1600ms]">
+  <img src="/img/adriana.jpeg" alt="Adriana Chávez" class="w-full h-72 md:h-full object-cover object-top md:object-center md:transform md:group-hover:scale-105 transition-transform duration-[1600ms]">
   <div class="absolute top-3 left-3 bg-black/60 px-3 py-1 text-xs rounded-full border border-yellow-500/40 tracking-wide">Mangueras Chávez</div>
         <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between">
           <h1 class="text-2xl font-bold drop-shadow-lg">Adriana Chávez</h1>
