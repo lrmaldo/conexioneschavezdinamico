@@ -30,8 +30,8 @@
                     </button>
                 </div>
 
-                <div class="p-4">
-                    <p class="text-gray-700">{{ $mensaje ?: 'Los cambios han sido guardados correctamente.' }}</p>
+                    <div class="p-4">
+                    <p class="text-gray-700">{{ $flashMessage ?? 'Los cambios han sido guardados correctamente.' }}</p>
                 </div>
 
                 <div class="p-4 bg-gray-50 rounded-b-lg flex justify-end">

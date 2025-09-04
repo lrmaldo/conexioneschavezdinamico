@@ -451,7 +451,20 @@
           <div class="flex flex-col md:flex-row">
             <div class="md:w-1/2 p-10">
               <h3 class="text-2xl font-bold text-black mb-6">Envíanos un mensaje</h3>
-              @livewire('contact-form')
+              <!-- Formulario de contacto (edición) movido al backend. Aquí mostramos información de contacto pública -->
+              <div class="space-y-3">
+                <p class="text-gray-700"><strong>Teléfono:</strong> {{ $contact->telefono1 ?? '' }}</p>
+                @if($contact->telefono2)
+                  <p class="text-gray-700"><strong>Teléfono 2:</strong> {{ $contact->telefono2 }}</p>
+                @endif
+                @if($contact->correo)
+                  <p class="text-gray-700"><strong>Correo:</strong> <a href="mailto:{{ $contact->correo }}" class="text-yellow-600">{{ $contact->correo }}</a></p>
+                @endif
+                @if($contact->direccion)
+                  <p class="text-gray-700"><strong>Dirección:</strong> {{ $contact->direccion }}</p>
+                @endif
+
+              </div>
             </div>
 
             <div class="md:w-1/2 bg-black text-white p-10 industrial-card">
